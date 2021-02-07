@@ -1,0 +1,4 @@
+.sidebar {
+  max-height: calc(100vh - var(--player-height));
+  overflow: auto;
+}

@@ -1,0 +1,12 @@
+.main {
+  --player-height: 15%;
+}
+
+.content {
+  max-height: calc(100vh - var(--player-height));
+  overflow: none;
+}
+
+.layout {
+  max-height: calc(100vh - var(--player-height));
+}
