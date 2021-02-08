@@ -1,10 +1,6 @@
 export const getFromLocalStorage = (key, defaultValue = undefined) => {
   if (window?.localStorage) {
-    try {
-      return localStorage.getItem(key);
-    } catch (e) {
-      return defaultValue;
-    }
+    return localStorage.getItem(key);
   }
   return defaultValue;
 };
@@ -12,15 +8,18 @@ export const getFromLocalStorage = (key, defaultValue = undefined) => {
 export const setToLocalStorage = (key, data) => {
   let toStore = data;
   if (window?.localStorage) {
-    try {
-      if (typeof data === "object") {
-        toStore = JSON.stringify(toStore);
-      }
-      localStorage.setItem(key, toStore);
-      return true;
-    } catch (e) {
-      return false;
+    if (typeof data === "object") {
+      toStore = JSON.stringify(toStore);
     }
+    localStorage.setItem(key, toStore);
+    return true;
+  }
+  return false;
+};
+
+export const removeFromLocalStorage = (key) => {
+  if (window?.localStorage) {
+    return localStorage.removeItem(key);
   }
   return false;
 };

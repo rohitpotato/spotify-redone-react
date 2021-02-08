@@ -75,7 +75,7 @@ Slider.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   step: PropTypes.number,
-  value: PropTypes.number,
+  value: PropTypes.any,
   onChange: PropTypes.func,
 };
 

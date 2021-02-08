@@ -1,17 +1,11 @@
 /* eslint-disable no-param-reassign */
-import { useEffect, useRef } from "react";
-import { localStorageKeys } from "../../../constants";
+import { useEffect } from "react";
 import useAudioStore from "../../../stores/useAudioStore";
 import useFirstRender from "../../../hooks/useFirstRender";
-import {
-  getFromLocalStorage,
-  setToLocalStorage,
-} from "../../../utils/localStorageUtils";
 
 const togglePlaybackSelector = (state) => state.togglePlayback;
 const setDurationSelector = (state) => state.setDuration;
 const setTimeElapsedSelector = (state) => state.setTimeElapsed;
-const setVolumeSelector = (state) => state.setVolume;
 const volumeSelector = (state) => state.volume;
 
 export default function useAudioInit({ audioRef, url }) {
@@ -20,22 +14,10 @@ export default function useAudioInit({ audioRef, url }) {
   const setDuration = useAudioStore(setDurationSelector);
   const setTimeElapsed = useAudioStore(setTimeElapsedSelector);
   const volume = useAudioStore(volumeSelector);
-  const setVolume = useAudioStore(setVolumeSelector);
 
   useEffect(() => {
-    const volumeFromLocalStorage =
-      getFromLocalStorage(localStorageKeys.LAST_SAVED_VOLUME, 1) || 0;
-    audioRef.current.volume = volumeFromLocalStorage;
-    setVolume(volumeFromLocalStorage);
-  }, [audioRef, setVolume]);
-
-  useEffect(() => {
-    if (!isFirstRender) {
-      audioRef.current.volume = volume;
-      setVolume(volume);
-      setToLocalStorage(localStorageKeys.LAST_SAVED_VOLUME, volume);
-    }
-  }, [volume, audioRef, setVolume, isFirstRender]);
+    audioRef.current.volume = volume;
+  }, [audioRef, volume]);
 
   useEffect(() => {
     audioRef.current.src = url;

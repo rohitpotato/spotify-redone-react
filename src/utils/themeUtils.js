@@ -18,10 +18,9 @@ export const getInitialTheme = () => {
 };
 
 // for tailwind css, need the change the root
-export const storeThemePreference = (theme) => {
+export const applyThemePreference = (theme) => {
   const root = window.document.documentElement;
   const isDark = theme === THEME_DARK;
   root.classList.remove(isDark ? THEME_LIGHT : THEME_DARK);
   root.classList.add(theme);
-  localStorage.setItem("theme", theme);
 };

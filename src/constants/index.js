@@ -12,7 +12,9 @@ export const dayMessage = {
 };
 
 export const localStorageKeys = {
+  THEME: "THEME",
   LAST_SAVED_VOLUME: "LAST_SAVED_VOLUME",
+  TOKEN_INFORMATION: "TOKEN_INFORMATION",
 };
 
 export const playbackOptions = {
@@ -20,3 +22,28 @@ export const playbackOptions = {
   PAUSE: "pause",
   STOP: "stop",
 };
+
+const apiCredentials = {
+  CLIENT_ID: "230be2f46909426b8b80cac36446b52a",
+  REDIRECT_URL: "http://localhost:3000/callback",
+  SCOPES: [
+    "user-library-read",
+    "streaming",
+    "user-top-read",
+    "user-read-private",
+    "user-read-recently-played",
+    "playlist-read-private",
+    "playlist-modify-public",
+    "playlist-modify-private",
+  ],
+};
+
+export const loginRoute = `https://accounts.spotify.com/authorize?client_id=${
+  apiCredentials.CLIENT_ID
+}&redirect_uri=${encodeURIComponent(
+  apiCredentials.REDIRECT_URL
+)}&scope=${encodeURIComponent(
+  apiCredentials.SCOPES.join(" ")
+)}&response_type=token`;
+
+export const BASE_URL = "https://api.spotify.com/v1";
