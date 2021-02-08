@@ -1,9 +1,17 @@
 import React from "react";
 import { iconSize } from "../constants";
+import useAudioStore from "../stores/useAudioStore";
+
+const setVolumeSelector = (state) => state.setVolume;
 
 const Volume = () => {
+  const setVolume = useAudioStore(setVolumeSelector);
   return (
-    <button className="focus:outline-none" type="button">
+    <button
+      className="focus:outline-none"
+      type="button"
+      onClick={() => setVolume(0)}
+    >
       <svg
         className={`${iconSize} dark:text-white`}
         xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +29,13 @@ const Volume = () => {
 };
 
 const VolumeMute = () => {
+  const setVolume = useAudioStore(setVolumeSelector);
   return (
-    <button className="focus:outline-none" type="button">
+    <button
+      className="focus:outline-none"
+      type="button"
+      onClick={() => setVolume(0.5)}
+    >
       <svg
         className={`${iconSize} dark:text-white`}
         xmlns="http://www.w3.org/2000/svg"

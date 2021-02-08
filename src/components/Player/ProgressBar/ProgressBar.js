@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useCallback, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useRef } from "react";
 import "./ProgressBar.css";
 import useDimensions from "../../../hooks/useDimensions";
 import useAudioStore from "../../../stores/useAudioStore";

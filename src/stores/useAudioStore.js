@@ -7,6 +7,8 @@ const useAudioStore = create((set) => ({
   setTimeElapsed: (time) => set({ timeElapsed: time }),
   duration: 0,
   setDuration: (duration) => set({ duration }),
+  volume: 0.5,
+  setVolume: (volume) => set({ volume }),
 }));
 
 export default useAudioStore;

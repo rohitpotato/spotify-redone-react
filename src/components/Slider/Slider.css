@@ -2,10 +2,10 @@
   --thumbSize: 12px;
   --trackSize: 5px;
   --thumbBg: #ffffff;
-  --trackBg: #ffffff;
-  --progressBg: rgba(59, 130, 246, var(--tw-bg-opacity));
+  --trackBg: #535353;
+  --progressBg: rgba(59, 130, 246, 1);
   --progressHoverBg: #1db954;
-  --track-borderRadius: 2px;
+  --track-borderRadius: 4px;
   --thumb-boxShadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   /* webkit progress workaround */
   --webkitProgressPercent: 0%;
@@ -20,7 +20,6 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  cursor: pointer;
 }
 .range:focus {
   outline: none;
