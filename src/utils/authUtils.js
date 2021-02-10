@@ -1,6 +1,6 @@
-import axios from "axios";
+import request from "./axiosClient";
 
-export const getTokenFromUrl = (url) => {
+export const getTokenFromUrl = () => {
   const hashParams = {};
   let e = "";
   const r = /([^&;=]+)=?([^&;]*)/g;
@@ -25,9 +25,9 @@ export const isTokenValid = (date) => {
 };
 
 export const setAxiosHeaders = (token) => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  request.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const removeAxiosAuthHeader = () => {
-  delete axios.defaults.headers.common.Authorization;
+  delete request.defaults.headers.common.Authorization;
 };

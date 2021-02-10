@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Content from "./components/Content/Content";
 import Layout from "./components/Layout/Layout";
 import { useTheme } from "./hooks/useTheme";

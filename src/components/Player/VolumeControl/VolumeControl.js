@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Volume, VolumeMute } from "../../../icons/VolumeIcon";
 import Slider from "../../Slider/Slider";
 import useAudioStore from "../../../stores/useAudioStore";
-import { setToLocalStorage } from "../../../utils/localStorageUtils";
-import { localStorageKeys } from "../../../constants";
 
 const setVolumeSelector = (state) => state.setVolume;
 const volumeSelector = (state) => state.volume;

@@ -16,8 +16,8 @@ export default function useLogin() {
   useLayoutEffect(() => {
     const token = getTokenFromUrl();
     if (token) {
-      setToken(token);
       setAxiosHeaders(token);
+      setToken(token);
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);

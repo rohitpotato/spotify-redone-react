@@ -5,6 +5,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Player from "../Player/Player";
 import LoginModal from "../LoginModal/LoginModal";
 import useAuthStore from "../../stores/useAuthStore";
+import Loader from "../../icons/Loader";
 
 const authSelector = (state) => state.isAuthenticated;
 
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
       </div>
       <Player />
       {!isAuthenticated && <LoginModal />}
+      <Loader />
     </>
   );
 };

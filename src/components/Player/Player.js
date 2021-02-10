@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useRef } from "react";
 import { playbackOptions } from "../../constants";
 import MediaPlayer from "./MediaPlayer/MediaPlayer";
 import "./Player.css";
