@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <div className="h-screen w-full dark:bg-themeGray transition">
+      <div className="h-screen w-full dark:bg-themeGray transition font-lato">
         <Layout>
           <Content />
         </Layout>

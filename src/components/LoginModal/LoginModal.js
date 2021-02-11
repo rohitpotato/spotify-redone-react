@@ -7,7 +7,7 @@ import { loginRoute } from "../../constants";
 const LoginModal = () => {
   return (
     <div className="h-screen w-full login-modal flex items-center justify-center">
-      <div className="bg-white dark:bg-themeGray dark:text-white rounded-md shadow-xl z-10 p-12 absolute flex flex-col items-center">
+      <div className="bg-white dark:bg-themeGray dark:text-white rounded-md shadow-xl z-100 p-12 absolute flex flex-col items-center">
         <div className="font-bold lg:text-6xl text-4xl tracking-wider">
           {getDayMessasge()}!
         </div>

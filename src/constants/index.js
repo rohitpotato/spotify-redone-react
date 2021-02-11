@@ -30,6 +30,17 @@ export const BASE_URL = "https://api.spotify.com/v1";
 
 export const queryKeys = {
   USER_PLAYLISTS: "userPlaylists",
+  NEW_RELEASES: "newReleases",
+  FEATURED_PLAYLISTS: "featuredPlaylists",
+  CATEGORY_LIST: "categoryList",
+  CATEGORY_PLAYLISTS: "categoryPlaylists",
+};
+
+export const tabs = {
+  BROWSE: "BROWSE",
+  CATEGORIES: "CATEGORIES",
+  SUB_PLAYLIST_VIEW: "SUB_PLAYLIST_VIEW",
+  LIST_VIEW: "LIST_VIEW",
 };
 
 export const iconSize = "h-7 w-7";

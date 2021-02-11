@@ -1,28 +1,27 @@
 import React from "react";
-import useThemeStore from "../../stores/useThemeStore";
-import { THEME_TYPES } from "../../constants/index";
-import SunIcon from "../../icons/SunIcon";
-import MoonIcon from "../../icons/MoonIcon";
-import { ChevronLeft, ChevronRight } from "../../icons/Chevron";
+import { tabs } from "../../constants";
+import useAppStore from "../../stores/useAppStore";
+import NavBar from "./NavBar/NavBar";
+import BrowseView from "../../Containers/BrowseView/BrowseView";
+import CategoryView from "../../Containers/CategoryView/CategoryView";
+import SubPlaylistView from "../../Containers/CategoryView/SubPlaylistView/SubPlayListView";
+import ListView from "../../Containers/ListView/ListView";
+
+const currentTabSelector = (state) => state.currentTab;
 
 const Content = () => {
-  const theme = useThemeStore((state) => state.theme);
+  const currentTab = useAppStore(currentTabSelector);
+  const { BROWSE, CATEGORIES, SUB_PLAYLIST_VIEW, LIST_VIEW } = tabs;
   return (
-    <nav className="content w-full sticky top-0">
-      <div className="flex justify-between items-center">
-        <div className="flex gap-6">
-          <div>
-            <ChevronLeft />
-          </div>
-          <div>
-            <ChevronRight />
-          </div>
-        </div>
-        <div className="flex">
-          {theme === THEME_TYPES.THEME_DARK ? <SunIcon /> : <MoonIcon />}
-        </div>
+    <>
+      <NavBar />
+      <div className="py-6 px-6">
+        {currentTab === BROWSE && <BrowseView />}
+        {currentTab === CATEGORIES && <CategoryView />}
+        {currentTab === SUB_PLAYLIST_VIEW && <SubPlaylistView />}
+        {currentTab === LIST_VIEW && <ListView />}
       </div>
-    </nav>
+    </>
   );
 };
 

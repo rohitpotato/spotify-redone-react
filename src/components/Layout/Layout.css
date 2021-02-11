@@ -4,7 +4,7 @@
 
 .content {
   max-height: calc(100vh - var(--player-height));
-  overflow: none;
+  overflow: scroll;
 }
 
 .layout {
