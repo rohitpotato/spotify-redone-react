@@ -1,4 +1,5 @@
 import React from "react";
+import Proptypes from "prop-types";
 import { iconSize } from "../constants";
 
 const HeartIcon = () => {
@@ -22,14 +23,14 @@ const HeartIcon = () => {
   );
 };
 
-const HeartIconActive = () => {
+const HeartIconActive = ({ fillColor }) => {
   return (
     <button type="button" className="focus:outline-none">
       <svg
         className={iconSize}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
-        fill="red"
+        fill={fillColor}
       >
         <path
           fillRule="evenodd"
@@ -39,6 +40,14 @@ const HeartIconActive = () => {
       </svg>
     </button>
   );
+};
+
+HeartIconActive.defaultProps = {
+  fillColor: "red",
+};
+
+HeartIconActive.propTypes = {
+  fillColor: Proptypes.string,
 };
 
 export { HeartIcon, HeartIconActive };

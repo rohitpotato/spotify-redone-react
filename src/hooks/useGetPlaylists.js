@@ -12,8 +12,6 @@ export default function useGetPlaylists() {
     () => request("/me/playlists"),
     {
       enabled: !!token,
-      retry: 2,
-      refetchOnWindowFocus: false,
     }
   );
 

@@ -15,7 +15,7 @@ const Content = () => {
   return (
     <>
       <NavBar />
-      <div className="py-6 px-6">
+      <div className="py-6 px-6 h-full">
         {currentTab === BROWSE && <BrowseView />}
         {currentTab === CATEGORIES && <CategoryView />}
         {currentTab === SUB_PLAYLIST_VIEW && <SubPlaylistView />}
