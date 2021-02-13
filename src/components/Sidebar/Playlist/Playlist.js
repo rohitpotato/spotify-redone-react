@@ -1,8 +1,21 @@
 import React from "react";
+import { tabs } from "../../../constants";
 import useGetPlaylists from "../../../hooks/useGetPlaylists";
+import useAppStore from "../../../stores/useAppStore";
+
+const setCurrentTabSelector = (state) => state.setCurrentTab;
+const setPlaylistInfoSelector = (state) => state.setPlaylistInfo;
 
 const Playlist = () => {
   const playlistQuery = useGetPlaylists();
+  const setCurrentTab = useAppStore(setCurrentTabSelector);
+  const setPlaylistInfo = useAppStore(setPlaylistInfoSelector);
+
+  const handleClick = (playlistId, playlistName) => {
+    setCurrentTab(tabs.PLAYLIST_LIST_VIEW);
+    setPlaylistInfo({ playlistId, playlistName });
+  };
+
   if (playlistQuery.isLoading) {
     return "Loading...";
   }
@@ -14,15 +27,18 @@ const Playlist = () => {
   if (playlistQuery.isSuccess) {
     return (
       <div>
-        {playlistQuery.data.data.items.map((playlist) => (
-          <button
-            key={playlist.id}
-            type="button"
-            className="py-2 text-gray-500 hover:text-gray-900 font-semibold text-sm dark:text-gray-400 truncate dark:hover:text-white w-full focus:outline-none transition"
-          >
-            <span className="flex items-center">{playlist.name}</span>
-          </button>
-        ))}
+        {playlistQuery.data.data.items.map(
+          ({ id: playlistId, name: playlistName }) => (
+            <button
+              onClick={() => handleClick(playlistId, playlistName)}
+              key={playlistId}
+              type="button"
+              className="py-2 text-gray-500 hover:text-gray-900 font-semibold text-sm dark:text-gray-400 truncate dark:hover:text-white w-full focus:outline-none transition"
+            >
+              <span className="flex items-center">{playlistName}</span>
+            </button>
+          )
+        )}
       </div>
     );
   }

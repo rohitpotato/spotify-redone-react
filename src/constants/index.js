@@ -34,13 +34,14 @@ export const queryKeys = {
   FEATURED_PLAYLISTS: "featuredPlaylists",
   CATEGORY_LIST: "categoryList",
   CATEGORY_PLAYLISTS: "categoryPlaylists",
+  PLAYLIST: "PLAYLIST",
 };
 
 export const tabs = {
   BROWSE: "BROWSE",
   CATEGORIES: "CATEGORIES",
   SUB_PLAYLIST_VIEW: "SUB_PLAYLIST_VIEW",
-  LIST_VIEW: "LIST_VIEW",
+  PLAYLIST_LIST_VIEW: "LIST_VIEW",
 };
 
 export const iconSize = "h-7 w-7";
@@ -61,4 +62,12 @@ export const playbackOptions = {
   PLAY: "play",
   PAUSE: "pause",
   STOP: "stop",
+};
+
+export const tableFieldListNames = {
+  TITLE: "TITLE",
+  ALBUM: "ALBUM",
+  ARTIST: "ARTIST",
+  ADDED_AT: "ADDED_AT",
+  DURATION: "DURATION",
 };

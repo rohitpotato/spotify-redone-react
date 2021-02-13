@@ -21,6 +21,7 @@ const Layout = ({ children }) => {
       </div>
       <Player />
       {!isAuthenticated && <LoginModal />}
+      {isFetching && <Loader />}
     </>
   );
 };

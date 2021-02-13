@@ -7,23 +7,21 @@ import VolumeControl from "./VolumeControl/VolumeControl";
 import useAudioStore from "../../stores/useAudioStore";
 import useAudioInit from "./hooks/useAudioInit";
 
-const url =
-  "https://sampleswap.org/samples-ghost/MELODIC%20SAMPLES/GUITARS/158[kb]badguitar.aif.mp3";
 const togglePlaybackSelector = (state) => state.togglePlayback;
 
 const Player = () => {
   const audioRef = useRef(null);
   const togglePlayback = useAudioStore(togglePlaybackSelector);
-  useAudioInit({ audioRef, url });
+  useAudioInit({ audioRef });
 
   const handlePlayback = useCallback(
     (action) => {
       if (action === playbackOptions.PLAY) {
         audioRef.current.play();
-        togglePlayback();
+        togglePlayback(true);
       } else if (action === playbackOptions.PAUSE) {
         audioRef.current.pause();
-        togglePlayback();
+        togglePlayback(false);
       } else {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;

@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
  * @return {HTMLInputElement}
  */
 
-const PlayIcon = ({ onClick }) => {
+const PlayIcon = ({ onClick, size }) => {
   return (
     <button className="focus:outline-none" type="button" onClick={onClick}>
       <svg
-        className="h-12 w-12 dark:text-white"
+        className={`${size} dark:text-white`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
@@ -29,8 +29,10 @@ export default PlayIcon;
 
 PlayIcon.defaultProps = {
   onClick: () => {},
+  size: "h-12 w-12",
 };
 
 PlayIcon.propTypes = {
   onClick: PropTypes.func,
+  size: PropTypes.string,
 };

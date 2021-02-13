@@ -16,7 +16,7 @@ const SubPlaylistView = () => {
 
   const handleCardClick = (playlistId, playlistName) => {
     setPlaylistInfo({ playlistId, playlistName });
-    setCurrentTab(tabs.LIST_VIEW);
+    setCurrentTab(tabs.PLAYLIST_LIST_VIEW);
   };
 
   if (getPlaylistCategory.isLoading) {

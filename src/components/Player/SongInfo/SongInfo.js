@@ -1,20 +1,29 @@
 import React from "react";
 import { HeartIcon, HeartIconActive } from "../../../icons/HeartIcon";
+import useAudioStore from "../../../stores/useAudioStore";
 
+const audioInfoSelector = (state) => state.audioInfo;
 const SongInfo = () => {
+  const audioInfo = useAudioStore(audioInfoSelector);
+  const { title, artist, image } = audioInfo || {};
   const liked = true;
-  const url =
-    "https://i.scdn.co/image/ab67616d000048516898a982ff3c6049ba52586c";
+
   return (
     <div className="flex space-x-4 items-center">
+      {image && (
+        <div>
+          <img className="h-12 w-12" src={image} alt="song_cover" />
+        </div>
+      )}
       <div>
-        <img className="h-12 w-12" src={url} alt="song_cover" />
-      </div>
-      <div>
-        <span className="block text-base font-semibold dark:text-white">
-          Blurred Lines
-        </span>
-        <span className="block text-sm dark:text-white">Robin Thicke</span>
+        {title && (
+          <span className="block text-base font-semibold dark:text-white">
+            {title}
+          </span>
+        )}
+        {artist && (
+          <span className="block text-sm dark:text-white">{artist}</span>
+        )}
       </div>
       <div>{liked ? <HeartIconActive /> : <HeartIcon />}</div>
     </div>
