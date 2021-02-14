@@ -8,6 +8,7 @@ import useAppStore from "../../stores/useAppStore";
 import { tabs } from "../../constants";
 
 const setCurrentTabSelector = (state) => state.setCurrentTab;
+
 const Sidebar = () => {
   const setCurrentTab = useAppStore(setCurrentTabSelector);
   return (
@@ -44,10 +45,11 @@ const Sidebar = () => {
           { name: "Liked Songs" },
           { name: "Artists" },
           { name: "Albums" },
-          { name: "Recently Played" },
+          { name: "Recently Played", onClick: tabs.RECENTLY_PLAYED },
         ].map((item) => (
           <button
             key={item.name}
+            onClick={() => setCurrentTab(item.onClick)}
             type="button"
             className="text-gray-500 hover:text-gray-900 font-bold text-sm dark:text-gray-400 dark:hover:text-white w-full focus:outline-none transition"
           >

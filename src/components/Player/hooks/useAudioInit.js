@@ -6,6 +6,7 @@ import useMusicQueueStore from "../../../stores/useMusicQueueStore";
 import { extractTrackData } from "../../../utils/trackUtils";
 
 const togglePlaybackSelector = (state) => state.togglePlayback;
+const isPlayingSelector = (state) => state.isPlaying;
 const setDurationSelector = (state) => state.setDuration;
 const setTimeElapsedSelector = (state) => state.setTimeElapsed;
 const volumeSelector = (state) => state.volume;
@@ -17,6 +18,7 @@ const setCurrentIndexSelector = (state) => state.setCurrentIndex;
 
 export default function useAudioInit({ audioRef }) {
   const isFirstRender = useFirstRender();
+  const isPlaying = useAudioStore(isPlayingSelector);
   const togglePlayback = useAudioStore(togglePlaybackSelector);
   const setDuration = useAudioStore(setDurationSelector);
   const setTimeElapsed = useAudioStore(setTimeElapsedSelector);
@@ -95,4 +97,22 @@ export default function useAudioInit({ audioRef }) {
     setAudioInfo,
     setCurrentIndex,
   ]);
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.keyCode === 32) {
+        if (isPlaying === true) {
+          togglePlayback(false);
+          audioRef.current.pause();
+        } else {
+          togglePlayback(true);
+          audioRef.current.play();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [isPlaying, togglePlayback, audioRef]);
 }

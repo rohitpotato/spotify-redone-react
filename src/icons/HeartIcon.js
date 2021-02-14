@@ -2,13 +2,13 @@ import React from "react";
 import Proptypes from "prop-types";
 import { iconSize } from "../constants";
 
-const HeartIcon = () => {
+const HeartIcon = ({ fillColor, onClick }) => {
   return (
-    <button type="button" className="focus:outline-none">
+    <button type="button" className="focus:outline-none" onClick={onClick}>
       <svg
         className={iconSize}
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
+        fill={fillColor}
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
@@ -23,9 +23,19 @@ const HeartIcon = () => {
   );
 };
 
-const HeartIconActive = ({ fillColor }) => {
+HeartIcon.defaultProps = {
+  fillColor: "none",
+  onClick: () => {},
+};
+
+HeartIcon.propTypes = {
+  fillColor: Proptypes.string,
+  onClick: Proptypes.func,
+};
+
+const HeartIconActive = ({ fillColor, onClick }) => {
   return (
-    <button type="button" className="focus:outline-none">
+    <button type="button" className="focus:outline-none" onClick={onClick}>
       <svg
         className={iconSize}
         xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +54,12 @@ const HeartIconActive = ({ fillColor }) => {
 
 HeartIconActive.defaultProps = {
   fillColor: "red",
+  onClick: () => {},
 };
 
 HeartIconActive.propTypes = {
   fillColor: Proptypes.string,
+  onClick: Proptypes.func,
 };
 
 export { HeartIcon, HeartIconActive };

@@ -29,12 +29,15 @@ export const loginRoute = `https://accounts.spotify.com/authorize?client_id=${
 export const BASE_URL = "https://api.spotify.com/v1";
 
 export const queryKeys = {
+  USER_PROFILE: "userProfile",
   USER_PLAYLISTS: "userPlaylists",
   NEW_RELEASES: "newReleases",
   FEATURED_PLAYLISTS: "featuredPlaylists",
   CATEGORY_LIST: "categoryList",
   CATEGORY_PLAYLISTS: "categoryPlaylists",
   PLAYLIST: "PLAYLIST",
+  PLAYLIST_FOLLOW_STATUS: "PLAYLIST_FOLLOW_STATUS",
+  RECENTLY_PLAYED: "recentlyPlayed",
 };
 
 export const tabs = {
@@ -42,6 +45,7 @@ export const tabs = {
   CATEGORIES: "CATEGORIES",
   SUB_PLAYLIST_VIEW: "SUB_PLAYLIST_VIEW",
   PLAYLIST_LIST_VIEW: "LIST_VIEW",
+  RECENTLY_PLAYED: "RECENTLY_PLAYED",
 };
 
 export const iconSize = "h-7 w-7";

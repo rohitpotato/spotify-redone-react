@@ -2,10 +2,10 @@ import React from "react";
 import useThemeStore from "../../stores/useThemeStore";
 import useAppStore from "../../stores/useAppStore";
 import useGetPlaylist from "../../hooks/useGetPlaylist";
+import useGetPlaylistFollowStatus from "../../hooks/useGetPlaylistFollowStatus";
+import usePlaylistFollowMutation from "../../hooks/mutations/usePlaylistFollowMutation";
 import { extractTrackData } from "../../utils/trackUtils";
-import { HeartIconActive } from "../../icons/HeartIcon";
-import ClockIcon from "../../icons/ClockIcon";
-import CalendarIcon from "../../icons/CalendarIcon";
+import { HeartIcon, HeartIconActive } from "../../icons/HeartIcon";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
 import { THEME_TYPES } from "../../constants/index";
 
@@ -16,6 +16,14 @@ const PlaylistView = () => {
   const theme = useThemeStore(themeSelector);
   const playlistInfo = useAppStore(playlistInfoSelector);
   const playlistQuery = useGetPlaylist({ id: playlistInfo?.playlistId });
+  const isFollowingQuery = useGetPlaylistFollowStatus({
+    id: playlistInfo?.playlistId,
+  });
+  const isFollowing = isFollowingQuery?.data?.data?.[0];
+  const toggleFollow = usePlaylistFollowMutation({
+    isFollowing,
+    playlistId: playlistInfo?.playlistId,
+  });
 
   if (playlistQuery.isLoading) {
     return <div className="dark:text-white">Loading...</div>;
@@ -33,6 +41,28 @@ const PlaylistView = () => {
     const trackLength = playlistQuery.data?.data?.tracks?.items?.length;
     const listType = playlistQuery.data?.data?.type;
     const trackList = playlistQuery.data?.data?.tracks?.items || [];
+
+    const getIconFillColor = () => {
+      if (isFollowing) {
+        return "red";
+      }
+
+      if (theme === THEME_TYPES.THEME_DARK) {
+        return "white";
+      }
+      return "black";
+    };
+
+    const togglePlaylistFollow = () => {
+      if (isFollowing !== undefined) {
+        if (isFollowing) {
+          toggleFollow.mutate(true);
+        } else {
+          toggleFollow.mutate(false);
+        }
+      }
+    };
+
     return (
       <>
         <div className="flex justify-between min-w-max">
@@ -76,16 +106,19 @@ const PlaylistView = () => {
                   </button>
                 </div>
                 <div>
-                  <button
+                  <div
                     type="button"
                     className="flex border focus:outline-none border-black dark:border-white h-10 w-10 rounded-full items-center justify-center p-4 hover:scale-110 transform-gpu transition-transform duration-150"
                   >
-                    <HeartIconActive
-                      fillColor={`${
-                        theme === THEME_TYPES.THEME_DARK ? "white" : "black"
-                      }`}
-                    />
-                  </button>
+                    {isFollowing ? (
+                      <HeartIconActive onClick={togglePlaylistFollow} />
+                    ) : (
+                      <HeartIcon
+                        onClick={togglePlaylistFollow}
+                        fillColor={THEME_TYPES.THEME_DARK ? "white" : "black"}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,7 +130,21 @@ const PlaylistView = () => {
           </div>
         </div>
         {/* Track Listing  */}
-        <div className="w-full py-16">
+        <div className="w-full py-16 min-w-full">
+          <div className="flex flex-auto justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
+            {["", "TITLE", "ALBUM", "ARTIST", "ADDED AT", "DURATION"].map(
+              (header, index) => {
+                const width = index === 0 ? "w-1/12" : "w-2/4";
+                return (
+                  <div key={header} className={`${width}`}>
+                    <span className="tracking-wider text-sm text-gray-500">
+                      {header}
+                    </span>
+                  </div>
+                );
+              }
+            )}
+          </div>
           {trackList.map((track, index) => {
             const {
               addedAt,
