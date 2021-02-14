@@ -1,14 +1,17 @@
 import React from "react";
 import useThemeStore from "../../../stores/useThemeStore";
-import useGetUserProfile from "../../../hooks/useGetUserProfile";
-import { THEME_TYPES } from "../../../constants/index";
+import useQueryHook from "../../../hooks/useQueryHook";
+import { queryKeys, THEME_TYPES } from "../../../constants/index";
 import SunIcon from "../../../icons/SunIcon";
 import MoonIcon from "../../../icons/MoonIcon";
 import SearchBar from "../../SearchBar/SearchBar";
 
 const NavBar = () => {
   const theme = useThemeStore((state) => state.theme);
-  const userInfoQuery = useGetUserProfile();
+  const userInfoQuery = useQueryHook({
+    key: queryKeys.USER_PROFILE,
+    url: "/me",
+  });
 
   const renderProfileInfo = () => {
     if (userInfoQuery.isLoading) {

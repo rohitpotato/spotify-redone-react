@@ -1,13 +1,13 @@
 import React from "react";
 import useThemeStore from "../../stores/useThemeStore";
 import useAppStore from "../../stores/useAppStore";
-import useGetPlaylist from "../../hooks/useGetPlaylist";
+import useQueryHook from "../../hooks/useQueryHook";
 import useGetPlaylistFollowStatus from "../../hooks/useGetPlaylistFollowStatus";
 import usePlaylistFollowMutation from "../../hooks/mutations/usePlaylistFollowMutation";
 import { extractTrackData } from "../../utils/trackUtils";
 import { HeartIcon, HeartIconActive } from "../../icons/HeartIcon";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
-import { THEME_TYPES } from "../../constants/index";
+import { queryKeys, THEME_TYPES } from "../../constants/index";
 
 const themeSelector = (state) => state.theme;
 const playlistInfoSelector = (state) => state.playlistInfo;
@@ -15,14 +15,19 @@ const playlistInfoSelector = (state) => state.playlistInfo;
 const PlaylistView = () => {
   const theme = useThemeStore(themeSelector);
   const playlistInfo = useAppStore(playlistInfoSelector);
-  const playlistQuery = useGetPlaylist({ id: playlistInfo?.playlistId });
+  const playlistId = playlistInfo?.playlistId;
+  const playlistQuery = useQueryHook({
+    key: [queryKeys.PLAYLIST, playlistId],
+    url: `/playlists/${playlistId}`,
+    id: playlistId,
+  });
   const isFollowingQuery = useGetPlaylistFollowStatus({
-    id: playlistInfo?.playlistId,
+    id: playlistId,
   });
   const isFollowing = isFollowingQuery?.data?.data?.[0];
   const toggleFollow = usePlaylistFollowMutation({
     isFollowing,
-    playlistId: playlistInfo?.playlistId,
+    playlistId,
   });
 
   if (playlistQuery.isLoading) {
@@ -41,17 +46,6 @@ const PlaylistView = () => {
     const trackLength = playlistQuery.data?.data?.tracks?.items?.length;
     const listType = playlistQuery.data?.data?.type;
     const trackList = playlistQuery.data?.data?.tracks?.items || [];
-
-    const getIconFillColor = () => {
-      if (isFollowing) {
-        return "red";
-      }
-
-      if (theme === THEME_TYPES.THEME_DARK) {
-        return "white";
-      }
-      return "black";
-    };
 
     const togglePlaylistFollow = () => {
       if (isFollowing !== undefined) {
@@ -115,7 +109,9 @@ const PlaylistView = () => {
                     ) : (
                       <HeartIcon
                         onClick={togglePlaylistFollow}
-                        fillColor={THEME_TYPES.THEME_DARK ? "white" : "black"}
+                        fillColor={
+                          theme === THEME_TYPES.THEME_DARK ? "white" : "black"
+                        }
                       />
                     )}
                   </div>

@@ -14,7 +14,7 @@ const ProgressBar = () => {
 
   const calculateProgressWidth = () => {
     const progressSize = (timeElapsed / duration) * progressBarWidth;
-    return (progressSize / progressBarWidth) * 100 || 0;
+    return Math.round((progressSize / progressBarWidth) * 100) || 0;
   };
 
   return (

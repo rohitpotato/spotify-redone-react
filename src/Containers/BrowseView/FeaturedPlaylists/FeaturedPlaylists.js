@@ -1,14 +1,17 @@
 import React from "react";
 import CardView from "../../../components/CardView/CardView";
-import useGetFeaturedPlaylists from "../../../hooks/useGetFeaturedPlaylists";
+import useQueryHook from "../../../hooks/useQueryHook";
 import useAppStore from "../../../stores/useAppStore";
-import { tabs } from "../../../constants";
+import { queryKeys, tabs } from "../../../constants";
 
 const setPlaylistInfoSelector = (state) => state.setPlaylistInfo;
 const setCurrentTabSelector = (state) => state.setCurrentTab;
 
 const FeaturedPlaylists = () => {
-  const featuredPlaylistsQuery = useGetFeaturedPlaylists();
+  const featuredPlaylistsQuery = useQueryHook({
+    url: "/browse/featured-playlists",
+    key: queryKeys.FEATURED_PLAYLISTS,
+  });
   const setPlaylistInfo = useAppStore(setPlaylistInfoSelector);
   const setCurrentTab = useAppStore(setCurrentTabSelector);
 

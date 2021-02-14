@@ -1,14 +1,17 @@
 import React from "react";
 import CardView from "../../components/CardView/CardView";
-import { tabs } from "../../constants";
-import useGetCategoryList from "../../hooks/useGetCategoryList";
+import { queryKeys, tabs } from "../../constants";
+import useQueryHook from "../../hooks/useQueryHook";
 import useAppStore from "../../stores/useAppStore";
 
 const setCurrentTabSelector = (state) => state.setCurrentTab;
 const setCategoryInfoSelector = (state) => state.setCategoryInfo;
 
 const CategoryView = () => {
-  const getCategoriesQuery = useGetCategoryList();
+  const getCategoriesQuery = useQueryHook({
+    url: "/browse/categories",
+    key: queryKeys.CATEGORY_LIST,
+  });
   const setCurrentTab = useAppStore(setCurrentTabSelector);
   const setCategoryInfo = useAppStore(setCategoryInfoSelector);
 

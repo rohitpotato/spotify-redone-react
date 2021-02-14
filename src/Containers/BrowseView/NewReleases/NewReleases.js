@@ -1,9 +1,13 @@
 import React from "react";
 import CardView from "../../../components/CardView/CardView";
-import useGetNewReleases from "../../../hooks/useGetNewReleases";
+import { queryKeys } from "../../../constants";
+import useQueryHook from "../../../hooks/useQueryHook";
 
 const NewReleases = () => {
-  const newReleasesQuery = useGetNewReleases();
+  const newReleasesQuery = useQueryHook({
+    url: "/browse/new-releases",
+    key: queryKeys.NEW_RELEASES,
+  });
 
   if (newReleasesQuery.isLoading) {
     return <div>Loading...</div>;

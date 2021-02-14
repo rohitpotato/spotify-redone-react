@@ -1,13 +1,16 @@
 import React from "react";
-import { tabs } from "../../../constants";
-import useGetPlaylists from "../../../hooks/useGetPlaylists";
+import { queryKeys, tabs } from "../../../constants";
+import useQueryHook from "../../../hooks/useQueryHook";
 import useAppStore from "../../../stores/useAppStore";
 
 const setCurrentTabSelector = (state) => state.setCurrentTab;
 const setPlaylistInfoSelector = (state) => state.setPlaylistInfo;
 
 const Playlist = () => {
-  const playlistQuery = useGetPlaylists();
+  const playlistQuery = useQueryHook({
+    url: "/me/playlists",
+    key: queryKeys.USER_PLAYLISTS,
+  });
   const setCurrentTab = useAppStore(setCurrentTabSelector);
   const setPlaylistInfo = useAppStore(setPlaylistInfoSelector);
 

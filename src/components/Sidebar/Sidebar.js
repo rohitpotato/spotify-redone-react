@@ -42,8 +42,8 @@ const Sidebar = () => {
           <span className="">your library</span>
         </div>
         {[
-          { name: "Liked Songs" },
-          { name: "Artists" },
+          { name: "Top Songs" },
+          { name: "Artists", onClick: tabs.ARTIST_LIST },
           { name: "Albums" },
           { name: "Recently Played", onClick: tabs.RECENTLY_PLAYED },
         ].map((item) => (

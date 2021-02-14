@@ -8,6 +8,8 @@ const useAppStore = create((set) => ({
   setPlaylistInfo: (playlistInfo) => set({ playlistInfo }),
   categoryInfo: null,
   setCategoryInfo: (categoryInfo) => set({ categoryInfo }),
+  artistInfo: null,
+  setArtistInfo: (artistInfo) => set({ artistInfo }),
   isUpdating: false,
   setIsUpdating: () => set((state) => ({ isUpdating: !state.isUpdating })),
 }));

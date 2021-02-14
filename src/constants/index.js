@@ -38,6 +38,8 @@ export const queryKeys = {
   PLAYLIST: "PLAYLIST",
   PLAYLIST_FOLLOW_STATUS: "PLAYLIST_FOLLOW_STATUS",
   RECENTLY_PLAYED: "recentlyPlayed",
+  ARTISTS: "ARTISTS",
+  ARTIST: "ARTIST",
 };
 
 export const tabs = {
@@ -46,6 +48,8 @@ export const tabs = {
   SUB_PLAYLIST_VIEW: "SUB_PLAYLIST_VIEW",
   PLAYLIST_LIST_VIEW: "LIST_VIEW",
   RECENTLY_PLAYED: "RECENTLY_PLAYED",
+  ARTIST_LIST: "ARTIST_LIST",
+  ARTIST: "ARTIST",
 };
 
 export const iconSize = "h-7 w-7";

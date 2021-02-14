@@ -1,7 +1,7 @@
 import React from "react";
 import CardView from "../../../components/CardView/CardView";
-import { tabs } from "../../../constants";
-import useGetCategoryPlaylists from "../../../hooks/useGetCategoryPlaylists";
+import { queryKeys, tabs } from "../../../constants";
+import useQueryHook from "../../../hooks/useQueryHook";
 import useAppStore from "../../../stores/useAppStore";
 
 const categoryInfoSelector = (state) => state.categoryInfo;
@@ -12,7 +12,11 @@ const SubPlaylistView = () => {
   const { id, name } = useAppStore(categoryInfoSelector);
   const setPlaylistInfo = useAppStore(setPlaylistInfoSelector);
   const setCurrentTab = useAppStore(setCurrentTabSelector);
-  const getPlaylistCategory = useGetCategoryPlaylists({ id });
+  const getPlaylistCategory = useQueryHook({
+    key: [queryKeys.FEATURED_PLAYLISTS, id],
+    id,
+    url: `/browse/categories/${id}/playlists`,
+  });
 
   const handleCardClick = (playlistId, playlistName) => {
     setPlaylistInfo({ playlistId, playlistName });

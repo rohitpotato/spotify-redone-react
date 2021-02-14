@@ -1,10 +1,14 @@
 import React from "react";
-import useGetRecentlyPlayed from "../../hooks/useGetRecentlyPlayed";
+import useQueryHook from "../../hooks/useQueryHook";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
 import { extractTrackData } from "../../utils/trackUtils";
+import { queryKeys } from "../../constants";
 
 const RecentlyPlayed = () => {
-  const recentlyPlayedQuery = useGetRecentlyPlayed();
+  const recentlyPlayedQuery = useQueryHook({
+    key: queryKeys.RECENTLY_PLAYED,
+    url: "/me/player/recently-played?limit=50",
+  });
 
   if (recentlyPlayedQuery.isLoading) {
     return <div>Loading...</div>;

@@ -5,15 +5,14 @@ import { queryKeys } from "../constants";
 
 const tokenSelector = (state) => state.token;
 
-export default function useGetPlaylist({ id }) {
+export default function useGetArtistsAndTracks({ type = "artists" }) {
   const token = useAuthStore(tokenSelector);
-  const playlistQuery = useQuery(
-    [queryKeys.PLAYLIST, id],
-    () => request(`/playlists/${id}`),
+  const getArtistAndTracksQuery = useQuery(
+    queryKeys.ARTISTS,
+    () => request(`/me/top/${type}?limit=50`),
     {
-      enabled: Boolean(token && id),
+      enabled: !!token,
     }
   );
-
-  return playlistQuery;
+  return getArtistAndTracksQuery;
 }

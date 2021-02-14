@@ -7,6 +7,7 @@ import CategoryView from "../../Containers/CategoryView/CategoryView";
 import SubPlaylistView from "../../Containers/CategoryView/SubPlaylistView/SubPlayListView";
 import PlaylistView from "../../Containers/ListView/PlaylistView";
 import RecentlyPlayed from "../../Containers/RecentlyPlayed/RecentlyPlayed";
+import FavoriteArtists from "../../Containers/ArtistView/FavoriteArtists";
 
 const currentTabSelector = (state) => state.currentTab;
 
@@ -18,6 +19,7 @@ const Content = () => {
     SUB_PLAYLIST_VIEW,
     PLAYLIST_LIST_VIEW,
     RECENTLY_PLAYED,
+    ARTIST_LIST,
   } = tabs;
   return (
     <>
@@ -28,6 +30,7 @@ const Content = () => {
         {currentTab === SUB_PLAYLIST_VIEW && <SubPlaylistView />}
         {currentTab === PLAYLIST_LIST_VIEW && <PlaylistView />}
         {currentTab === RECENTLY_PLAYED && <RecentlyPlayed />}
+        {currentTab === ARTIST_LIST && <FavoriteArtists />}
       </div>
     </>
   );
