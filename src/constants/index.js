@@ -40,6 +40,7 @@ export const queryKeys = {
   RECENTLY_PLAYED: "recentlyPlayed",
   ARTISTS: "ARTISTS",
   ARTIST: "ARTIST",
+  ARTIST_FOLLOW_STATUS: "ARTIST_FOLLOW_STATUS",
 };
 
 export const tabs = {
