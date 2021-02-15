@@ -1,6 +1,7 @@
 import React from "react";
 import "./Sidebar.css";
 import HomeIcon from "../../icons/HomeIcon";
+import SearchIcon from "../../icons/SearchIcon";
 import BrowseIcon from "../../icons/BrowseIcon";
 import CategoryIcon from "../../icons/CategoryIcon";
 import Playlist from "./Playlist/Playlist";
@@ -15,13 +16,13 @@ const Sidebar = () => {
     <nav className="sidebar w-96 shadow px-6">
       <div className="py-8 dark:text-white space-y-3">
         {[
-          { name: "HOME", Component: HomeIcon },
           { name: "Browse", Component: BrowseIcon, onClickView: tabs.BROWSE },
           {
             name: "Categories",
             Component: CategoryIcon,
             onClickView: tabs.CATEGORIES,
           },
+          { name: "SEARCH", Component: SearchIcon },
         ].map(({ name, Component, onClickView }) => {
           return (
             <button

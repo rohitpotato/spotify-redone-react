@@ -6,10 +6,7 @@ const themeSelector = (state) => state.theme;
 const Loader = () => {
   const theme = useThemeStore(themeSelector);
   return (
-    <div className="z-10 bg-black dark:bg-white flex fixed top-14 right-5 items-center justify-between rounded-md px-8 py-2 space-x-4">
-      <div className="text-white dark:text-black uppercase tracking-widest font-semibold ">
-        Updating
-      </div>
+    <div className="z-10flex fixed top-14 right-5 px-8 py-2">
       <svg
         className="h-8 w-8"
         version="1.1"
@@ -22,7 +19,7 @@ const Loader = () => {
         xmlSpace="preserve"
       >
         <rect
-          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#fff" : "#000"}`}
+          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#000" : "#fff"}`}
           width="3"
           height="100"
           transform="translate(0) rotate(180 3 50)"
@@ -37,7 +34,7 @@ const Loader = () => {
         </rect>
         <rect
           x="17"
-          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#fff" : "#000"}`}
+          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#000" : "#fff"}`}
           width="3"
           height="100"
           transform="translate(0) rotate(180 20 50)"
@@ -53,7 +50,7 @@ const Loader = () => {
         </rect>
         <rect
           x="40"
-          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#fff" : "#000"}`}
+          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#000" : "#fff"}`}
           width="3"
           height="100"
           transform="translate(0) rotate(180 40 50)"
@@ -69,7 +66,7 @@ const Loader = () => {
         </rect>
         <rect
           x="60"
-          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#fff" : "#000"}`}
+          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#000" : "#fff"}`}
           width="3"
           height="100"
           transform="translate(0) rotate(180 58 50)"
@@ -85,7 +82,7 @@ const Loader = () => {
         </rect>
         <rect
           x="80"
-          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#fff" : "#000"}`}
+          fill={`${theme !== THEME_TYPES.THEME_DARK ? "#000" : "#fff"}`}
           width="3"
           height="100"
           transform="translate(0) rotate(180 76 50)"

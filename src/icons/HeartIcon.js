@@ -53,7 +53,7 @@ const HeartIconActive = ({ fillColor, onClick }) => {
 };
 
 HeartIconActive.defaultProps = {
-  fillColor: "red",
+  fillColor: "#3b82f6",
   onClick: () => {},
 };
 

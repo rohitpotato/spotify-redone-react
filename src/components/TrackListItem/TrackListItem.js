@@ -2,13 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import useAudioStore from "../../stores/useAudioStore";
 import useMusicQueueStore from "../../stores/useMusicQueueStore";
+import useAppStore from "../../stores/useAppStore";
 import transformQueue from "../../utils/queueUtils";
 import PlayIcon from "../../icons/PlayIcon";
-import { iconSize } from "../../constants";
+import { iconSize, tabs } from "../../constants";
 
 const setAudioInfoSelector = (state) => state.setAudioInfo;
 const setQueueSelector = (state) => state.setQueue;
 const setCurrentIndexSelector = (state) => state.setCurrentIndex;
+const setCurrentTabSelector = (state) => state.setCurrentTab;
+const setArtistInfoSelector = (state) => state.setArtistInfo;
 const TrackListItem = ({
   id,
   index,
@@ -25,11 +28,19 @@ const TrackListItem = ({
 }) => {
   const setAudioInfo = useAudioStore(setAudioInfoSelector);
   const setQueue = useMusicQueueStore(setQueueSelector);
+  const setCurrentTab = useAppStore(setCurrentTabSelector);
+  const setArtistInfo = useAppStore(setArtistInfoSelector);
   const setCurrentIndex = useMusicQueueStore(setCurrentIndexSelector);
+
   const handlePlayClick = () => {
     setAudioInfo({ id, title, url, artist, image });
     setQueue(transformQueue(list));
     setCurrentIndex(index);
+  };
+
+  const handleArtistClick = () => {
+    setCurrentTab(tabs.ARTIST);
+    setArtistInfo({ artistId });
   };
 
   return (
@@ -58,6 +69,7 @@ const TrackListItem = ({
         )}
         {artist && (
           <button
+            onClick={handleArtistClick}
             type="button"
             className="w-2/4 focus:outline-none cursor-pointer hover:underline"
           >

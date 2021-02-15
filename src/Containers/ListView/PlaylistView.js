@@ -94,7 +94,7 @@ const PlaylistView = () => {
                 <div className="">
                   <button
                     type="button"
-                    className="tracking-widest py-2 px-8 bg-blue-500 dark:bg-red-500 rounded-3xl uppercase text-center font-bold focus:outline-none hover:scale-110 transform-gpu transition-transform"
+                    className="tracking-widest py-2 px-8 bg-blue-500 rounded-3xl uppercase text-center font-bold focus:outline-none hover:scale-110 transform-gpu transition-transform"
                   >
                     <span className="">pause</span>
                   </button>

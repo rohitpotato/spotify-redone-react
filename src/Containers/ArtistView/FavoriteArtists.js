@@ -5,7 +5,7 @@ import useGetArtistsAndTracks from "../../hooks/useGetArtistsAndTracks";
 const FavoriteArtists = () => {
   const getArtistsQuery = useGetArtistsAndTracks({ type: "artists" });
   if (getArtistsQuery.isLoading) {
-    <div className="dark:text-whtie">Loading..</div>;
+    <div className="dark:text-white">Loading..</div>;
   }
 
   if (getArtistsQuery.isError) {

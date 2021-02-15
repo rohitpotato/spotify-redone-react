@@ -42,9 +42,6 @@ const NavBar = () => {
       <div className="flex sm:flex-col md:flex-row justify-between items-center">
         <div className="flex gap-6 items-center w-full justify-start">
           {renderProfileInfo()}
-          <div className="w-full">
-            <SearchBar />
-          </div>
         </div>
         <div className="flex w-full justify-end">
           {theme === THEME_TYPES.THEME_DARK ? <SunIcon /> : <MoonIcon />}
