@@ -27,7 +27,7 @@ const RecentlyPlayed = () => {
             Recently Played
           </h1>
         </div>
-        <div className="w-full py-16 min-w-full">
+        <div className="w-full py-16 min-w-max">
           <div className="flex flex-auto justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
             {["", "TITLE", "ALBUM", "ARTIST", "DURATION"].map(
               (header, index) => {

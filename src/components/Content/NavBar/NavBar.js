@@ -4,7 +4,6 @@ import useQueryHook from "../../../hooks/useQueryHook";
 import { queryKeys, THEME_TYPES } from "../../../constants/index";
 import SunIcon from "../../../icons/SunIcon";
 import MoonIcon from "../../../icons/MoonIcon";
-import SearchBar from "../../SearchBar/SearchBar";
 
 const NavBar = () => {
   const theme = useThemeStore((state) => state.theme);

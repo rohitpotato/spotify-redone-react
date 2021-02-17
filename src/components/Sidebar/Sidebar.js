@@ -1,6 +1,5 @@
 import React from "react";
 import "./Sidebar.css";
-import HomeIcon from "../../icons/HomeIcon";
 import SearchIcon from "../../icons/SearchIcon";
 import BrowseIcon from "../../icons/BrowseIcon";
 import CategoryIcon from "../../icons/CategoryIcon";

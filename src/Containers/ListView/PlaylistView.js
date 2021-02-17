@@ -7,6 +7,7 @@ import usePlaylistFollowMutation from "../../hooks/mutations/usePlaylistFollowMu
 import { extractTrackData } from "../../utils/trackUtils";
 import { HeartIcon, HeartIconActive } from "../../icons/HeartIcon";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
+import "../../components/TrackListItem/TrackListItem.css";
 import { queryKeys, THEME_TYPES } from "../../constants/index";
 
 const themeSelector = (state) => state.theme;
@@ -60,7 +61,7 @@ const PlaylistView = () => {
     return (
       <>
         <div className="flex justify-between min-w-max">
-          <div className="relative flex items-center gap-4">
+          <div className="flex items-center gap-4 item-title">
             <div>
               <img
                 src={playlistImage}
@@ -73,7 +74,7 @@ const PlaylistView = () => {
                 <span className="uppercase tracking-widest text-sm dark:text-white text-gray-500 block">
                   {listType}
                 </span>
-                <h1 className="text-4xl block dark:text-white text-gray-500 font-bold">
+                <h1 className="text-5xl block dark:text-white text-gray-500 font-bold">
                   {playlistName}
                 </h1>
                 <div className="flex items-center gap-4">
@@ -119,28 +120,14 @@ const PlaylistView = () => {
               </div>
             </div>
           </div>
-          <div className="self-end">
+          <div className="self-end flex justify-center flex-1">
             <span className="uppercase tracking-wider text-gray-500 dark:text-white text-sm font-semibold">
               Followers <bold>{playlistFollowers}</bold>
             </span>
           </div>
         </div>
         {/* Track Listing  */}
-        <div className="w-full py-16 min-w-full">
-          <div className="flex flex-auto justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
-            {["", "TITLE", "ALBUM", "ARTIST", "ADDED AT", "DURATION"].map(
-              (header, index) => {
-                const width = index === 0 ? "w-1/12" : "w-2/4";
-                return (
-                  <div key={header} className={`${width}`}>
-                    <span className="tracking-wider text-sm text-gray-500">
-                      {header}
-                    </span>
-                  </div>
-                );
-              }
-            )}
-          </div>
+        <div className="w-full py-16 min-w-max">
           {trackList.map((track, index) => {
             const {
               addedAt,

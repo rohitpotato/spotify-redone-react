@@ -1,3 +1,4 @@
 .player {
   height: var(--player-height);
+  overflow: hidden;
 }

@@ -6,6 +6,7 @@ import useAppStore from "../../stores/useAppStore";
 import transformQueue from "../../utils/queueUtils";
 import PlayIcon from "../../icons/PlayIcon";
 import { iconSize, tabs } from "../../constants";
+import "./TrackListItem.css";
 
 const setAudioInfoSelector = (state) => state.setAudioInfo;
 const setQueueSelector = (state) => state.setQueue;
@@ -45,22 +46,19 @@ const TrackListItem = ({
 
   return (
     <>
-      <div className="flex flex-auto justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
-        <div className="w-1/12">
+      <div className="flex border-b-2 border-gray-400 space-x-3 dark:border-gray-600 border-opacity-2 20 justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
+        <div className="mx-2">
           <PlayIcon onClick={handlePlayClick} size={iconSize} />
         </div>
-        <button
-          type="button"
-          className="w-2/4 focus:outline-none cursor-pointer hover:underline"
-        >
+        <div className="focus:outline-none flex-shrink-0 item-title">
           <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold ">
             {title}
           </span>
-        </button>
+        </div>
         {album && (
           <button
             type="button"
-            className="w-2/4 focus:outline-none cursor-pointer hover:underline"
+            className="focus:outline-none cursor-pointer hover:underline flex-shrink-0 item-title"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {album}
@@ -71,7 +69,7 @@ const TrackListItem = ({
           <button
             onClick={handleArtistClick}
             type="button"
-            className="w-2/4 focus:outline-none cursor-pointer hover:underline"
+            className="focus:outline-none cursor-pointer hover:underline flex-shrink-0 item-title"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {artist}
@@ -81,7 +79,7 @@ const TrackListItem = ({
         {addedAt && (
           <button
             type="button"
-            className="w-2/4 focus:outline-none cursor-pointer hover:underline"
+            className="focus:outline-none cursor-pointer hover:underline flex-1 flex-shrink-0"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {addedAt}
@@ -91,7 +89,7 @@ const TrackListItem = ({
         {duration && (
           <button
             type="button"
-            className="w-2/4 focus:outline-none cursor-pointer hover:underline"
+            className="focus:outline-none cursor-pointer hover:underline flex-1 flex-shrink-0"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {duration}
@@ -99,7 +97,6 @@ const TrackListItem = ({
           </button>
         )}
       </div>
-      <div className="border-solid border">{}</div>
     </>
   );
 };
