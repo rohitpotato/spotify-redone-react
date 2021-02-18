@@ -25,3 +25,26 @@ export function extractTrackData(trackData) {
     musicImage,
   };
 }
+
+export const extractTrackDataFromAlbum = (trackData) => {
+  const { added_at: addedAt } = trackData;
+  const {
+    artists,
+    id,
+    preview_url: previewUrl,
+    name,
+    duration_ms: duration,
+    image,
+  } = trackData || {};
+  const { name: artistName, id: artistId } = artists?.[0] || {};
+  return {
+    addedAt,
+    id,
+    name,
+    image,
+    duration,
+    previewUrl,
+    artistId,
+    artistName,
+  };
+};

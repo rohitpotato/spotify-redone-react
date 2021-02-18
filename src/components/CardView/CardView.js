@@ -45,4 +45,4 @@ CardView.propTypes = {
   onCardClick: PropTypes.func,
 };
 
-export default CardView;
+export default React.memo(CardView);

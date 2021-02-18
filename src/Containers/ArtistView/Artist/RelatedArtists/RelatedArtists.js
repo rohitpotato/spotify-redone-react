@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import useAppStore from "../../../../stores/useAppStore";
 import useQueryHook from "../../../../hooks/useQueryHook";
 import { queryKeys } from "../../../../constants";
@@ -40,7 +41,7 @@ const RelatedArtists = () => {
                 artistName={name}
                 image={image}
                 artistId={id}
-                key={id}
+                key={uuid()}
               />
             );
           })}

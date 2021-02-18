@@ -6,6 +6,7 @@ import useArtistFollowMutation from "../../../hooks/mutations/useArtistFollowMut
 import { queryKeys, THEME_TYPES } from "../../../constants";
 import ArtistTopTracks from "./ArtistTopTracks/ArtistTopTracks";
 import RelatedArtists from "./RelatedArtists/RelatedArtists";
+import AritstAlbums from "../ArtistAlbums/ArtistAlbums";
 import CheckCircle from "../../../icons/CheckCircle";
 import { HeartIcon, HeartIconActive } from "../../../icons/HeartIcon";
 import "./Artist.css";
@@ -113,7 +114,7 @@ const Artist = () => {
           </div>
           <div className="self-end">
             <span className="uppercase tracking-wider text-gray-500 dark:text-white text-sm font-semibold">
-              Followers <bold>{followers?.total}</bold>
+              Followers {followers?.total}
             </span>
           </div>
         </div>
@@ -125,6 +126,9 @@ const Artist = () => {
           <div className=" flex-shrink-0 flex-1 flex lg:justify-center">
             <RelatedArtists />
           </div>
+        </div>
+        <div>
+          <AritstAlbums />
         </div>
       </div>
     );

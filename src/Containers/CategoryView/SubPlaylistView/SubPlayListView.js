@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import CardView from "../../../components/CardView/CardView";
 import { queryKeys, tabs } from "../../../constants";
 import useQueryHook from "../../../hooks/useQueryHook";
@@ -42,7 +43,7 @@ const SubPlaylistView = () => {
         <div className="album-list">
           {getPlaylistCategory.data?.data?.playlists?.items?.map(
             ({ id: playlistId, name: playlistName, images, description }) => (
-              <div key={playlistId}>
+              <div key={uuid()}>
                 <CardView
                   onCardClick={() => handleCardClick(playlistId, playlistName)}
                   description={description}

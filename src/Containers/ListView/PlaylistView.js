@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { v4 as uuid } from "uuid";
 import useThemeStore from "../../stores/useThemeStore";
 import useAppStore from "../../stores/useAppStore";
 import useQueryHook from "../../hooks/useQueryHook";
@@ -9,6 +10,7 @@ import { HeartIcon, HeartIconActive } from "../../icons/HeartIcon";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
 import "../../components/TrackListItem/TrackListItem.css";
 import { queryKeys, THEME_TYPES } from "../../constants/index";
+import usePrefetchTrackInfo from "../../hooks/usePrefetchTrackInfo";
 
 const themeSelector = (state) => state.theme;
 const playlistInfoSelector = (state) => state.playlistInfo;
@@ -30,6 +32,15 @@ const PlaylistView = () => {
     isFollowing,
     playlistId,
   });
+
+  // const trackList = useMemo(() => {
+  //   console.log("memo bro?");
+  //   return playlistQuery.data?.data?.tracks?.items || [];
+  // }, [playlistQuery.data?.data?.tracks?.items]);
+  // const trackListIds = useMemo(() => {
+  //   return trackList.map((track) => extractTrackDataFromAlbum(track));
+  // }, [trackList]);
+  // usePrefetchTrackInfo({ list: trackListIds });
 
   if (playlistQuery.isLoading) {
     return <div className="dark:text-white">Loading...</div>;
@@ -80,7 +91,9 @@ const PlaylistView = () => {
                 <div className="flex items-center gap-4">
                   <span className="text-sm dark:text-white text-gray-500">
                     Created by{" "}
-                    <bold className="font-bold text-base">{playlistOwner}</bold>
+                  </span>
+                  <span className="dark:text-white text-gray-500 font-bold text-base">
+                    {playlistOwner}
                   </span>
                   <span className="text-sm dark:text-white text-gray-500">
                     {trackLength} songs
@@ -122,7 +135,7 @@ const PlaylistView = () => {
           </div>
           <div className="self-end flex justify-center flex-1">
             <span className="uppercase tracking-wider text-gray-500 dark:text-white text-sm font-semibold">
-              Followers <bold>{playlistFollowers}</bold>
+              Followers {playlistFollowers}
             </span>
           </div>
         </div>
@@ -143,7 +156,7 @@ const PlaylistView = () => {
             } = extractTrackData(track);
             return (
               <TrackListItem
-                key={id}
+                key={uuid()}
                 id={id}
                 index={index}
                 title={name}
@@ -163,7 +176,6 @@ const PlaylistView = () => {
       </>
     );
   }
-
   return null;
 };
 

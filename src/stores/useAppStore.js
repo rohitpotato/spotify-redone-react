@@ -10,6 +10,8 @@ const useAppStore = create((set) => ({
   setCategoryInfo: (categoryInfo) => set({ categoryInfo }),
   artistInfo: null,
   setArtistInfo: (artistInfo) => set({ artistInfo }),
+  albumInfo: null,
+  setAlbumInfo: (albumInfo) => set({ albumInfo }),
   isUpdating: false,
   setIsUpdating: () => set((state) => ({ isUpdating: !state.isUpdating })),
 }));

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { v4 as uuid } from "uuid";
 import CardView from "../../../components/CardView/CardView";
 import useQueryHook from "../../../hooks/useQueryHook";
 import useAppStore from "../../../stores/useAppStore";
@@ -15,10 +16,13 @@ const FeaturedPlaylists = () => {
   const setPlaylistInfo = useAppStore(setPlaylistInfoSelector);
   const setCurrentTab = useAppStore(setCurrentTabSelector);
 
-  const handleCardClick = (playlistId, playlistName) => {
-    setPlaylistInfo({ playlistId, playlistName });
-    setCurrentTab(tabs.PLAYLIST_LIST_VIEW);
-  };
+  const handleCardClick = useCallback(
+    (playlistId, playlistName) => {
+      setPlaylistInfo({ playlistId, playlistName });
+      setCurrentTab(tabs.PLAYLIST_LIST_VIEW);
+    },
+    [setCurrentTab, setPlaylistInfo]
+  );
 
   if (featuredPlaylistsQuery.isLoading) {
     return <div>Loading...</div>;
@@ -39,7 +43,7 @@ const FeaturedPlaylists = () => {
         <div className="album-list">
           {featuredPlaylistsQuery.data?.data?.playlists?.items?.map(
             ({ id: playlistId, name: playlistName, images, description }) => (
-              <div key={playlistId}>
+              <div key={uuid()}>
                 <CardView
                   onCardClick={() => handleCardClick(playlistId, playlistName)}
                   description={description}

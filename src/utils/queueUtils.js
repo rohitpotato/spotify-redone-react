@@ -12,7 +12,7 @@ export default function transformQueue(list = []) {
   return newList;
 }
 
-export const transforArtistQueue = (list = []) => {
+export const transformArtistQueue = (list = []) => {
   const newList = list.reduce(
     (acc, curr) => {
       if (curr?.id) {

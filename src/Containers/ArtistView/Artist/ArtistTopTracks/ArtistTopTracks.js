@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import useAppStore from "../../../../stores/useAppStore";
 import useQueryHook from "../../../../hooks/useQueryHook";
 import ArtistTrackList from "../../../../components/ArtistTrackList/ArtistTrackList";
@@ -34,7 +35,6 @@ const ArtistTopTracks = () => {
         </div>
         {trackList.map((track, index) => {
           const {
-            id,
             name,
             preview_url: previewUrl,
             album,
@@ -49,7 +49,7 @@ const ArtistTopTracks = () => {
           const artists = artistData?.[0].name || "";
           return (
             <ArtistTrackList
-              key={id}
+              key={uuid()}
               name={name}
               index={index}
               image={trackImage}
@@ -57,6 +57,7 @@ const ArtistTopTracks = () => {
               artistInfo={artists}
               list={trackList}
               albumName={albumName}
+              albumId={albumId}
             />
           );
         })}

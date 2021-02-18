@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import CardView from "../../components/CardView/CardView";
 import { queryKeys, tabs } from "../../constants";
 import useQueryHook from "../../hooks/useQueryHook";
@@ -39,7 +40,7 @@ const CategoryView = () => {
         <div className="album-list">
           {getCategoriesQuery.data?.data?.categories?.items?.map(
             ({ id, name, icons, description }) => (
-              <div key={id}>
+              <div key={uuid()}>
                 <CardView
                   onCardClick={() => onCardClick(id, name)}
                   description={description}

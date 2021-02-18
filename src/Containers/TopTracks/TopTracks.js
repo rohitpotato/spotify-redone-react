@@ -5,27 +5,27 @@ import TrackListItem from "../../components/TrackListItem/TrackListItem";
 import { extractTrackData } from "../../utils/trackUtils";
 import { queryKeys } from "../../constants";
 
-const RecentlyPlayed = () => {
-  const recentlyPlayedQuery = useQueryHook({
-    key: queryKeys.RECENTLY_PLAYED,
-    url: "/me/player/recently-played?limit=50",
+const TopTracks = () => {
+  const topTracksQuery = useQueryHook({
+    key: queryKeys.TOP_TRACKS,
+    url: "/me/tracks?limit=50",
   });
 
-  if (recentlyPlayedQuery.isLoading) {
+  if (topTracksQuery.isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (recentlyPlayedQuery.isError) {
+  if (topTracksQuery.isError) {
     return <div>Failed to load.</div>;
   }
 
-  if (recentlyPlayedQuery.isSuccess) {
-    const trackList = recentlyPlayedQuery.data?.data?.items || [];
+  if (topTracksQuery.isSuccess) {
+    const trackList = topTracksQuery.data?.data?.items || [];
     return (
       <div>
         <div>
           <h1 className="text-4xl font-bold tracking-wide dark:text-white">
-            Recently Played
+            Top Tracks
           </h1>
         </div>
         <div className="w-full py-16 min-w-max">
@@ -82,4 +82,4 @@ const RecentlyPlayed = () => {
   return null;
 };
 
-export default RecentlyPlayed;
+export default TopTracks;

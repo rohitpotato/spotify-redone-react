@@ -13,6 +13,8 @@ const setQueueSelector = (state) => state.setQueue;
 const setCurrentIndexSelector = (state) => state.setCurrentIndex;
 const setCurrentTabSelector = (state) => state.setCurrentTab;
 const setArtistInfoSelector = (state) => state.setArtistInfo;
+const setAlbumInfoSelector = (state) => state.setAlbumInfo;
+
 const TrackListItem = ({
   id,
   index,
@@ -31,6 +33,7 @@ const TrackListItem = ({
   const setQueue = useMusicQueueStore(setQueueSelector);
   const setCurrentTab = useAppStore(setCurrentTabSelector);
   const setArtistInfo = useAppStore(setArtistInfoSelector);
+  const setAlbumInfo = useAppStore(setAlbumInfoSelector);
   const setCurrentIndex = useMusicQueueStore(setCurrentIndexSelector);
 
   const handlePlayClick = () => {
@@ -42,6 +45,11 @@ const TrackListItem = ({
   const handleArtistClick = () => {
     setCurrentTab(tabs.ARTIST);
     setArtistInfo({ artistId });
+  };
+
+  const handleAlbumClick = () => {
+    setCurrentTab(tabs.ALBUM);
+    setAlbumInfo({ albumId });
   };
 
   return (
@@ -57,8 +65,9 @@ const TrackListItem = ({
         </div>
         {album && (
           <button
+            onClick={handleAlbumClick}
             type="button"
-            className="focus:outline-none cursor-pointer hover:underline flex-shrink-0 item-title"
+            className="focus:outline-none cursor-pointer hover:underline flex-shrink-0 item-title text-left"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {album}
@@ -69,7 +78,7 @@ const TrackListItem = ({
           <button
             onClick={handleArtistClick}
             type="button"
-            className="focus:outline-none cursor-pointer hover:underline flex-shrink-0 item-title"
+            className="focus:outline-none cursor-pointer hover:underline flex-1 flex-shrink-0 item-title text-left"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
               {artist}

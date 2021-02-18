@@ -1,15 +1,16 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import ArtistCard from "../../components/ArtistCard/ArtistCard";
 import useGetArtistsAndTracks from "../../hooks/useGetArtistsAndTracks";
 
 const FavoriteArtists = () => {
   const getArtistsQuery = useGetArtistsAndTracks({ type: "artists" });
   if (getArtistsQuery.isLoading) {
-    <div className="dark:text-white">Loading..</div>;
+    return <div className="dark:text-white">Loading..</div>;
   }
 
   if (getArtistsQuery.isError) {
-    <div>Failed to load..</div>;
+    return <div className="dark:text-white">Failed to load..</div>;
   }
 
   if (getArtistsQuery.isSuccess) {
@@ -23,7 +24,7 @@ const FavoriteArtists = () => {
         <div className="album-list">
           {getArtistsQuery.data?.data?.items?.map(
             ({ id: artistId, name: artistName, images }) => (
-              <div key={artistId}>
+              <div key={uuid()}>
                 <ArtistCard
                   artistId={artistId}
                   artistName={artistName}
