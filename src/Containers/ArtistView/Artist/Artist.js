@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useCallback } from "react";
 import useAppStore from "../../../stores/useAppStore";
 import useQueryHook from "../../../hooks/useQueryHook";
-import useThemeStore from "../../../stores/useThemeStore";
 import useArtistFollowMutation from "../../../hooks/mutations/useArtistFollowMutation";
-import { queryKeys, THEME_TYPES } from "../../../constants";
+import { queryKeys } from "../../../constants";
+import Banner from "../../../components/Banner/Banner";
 import ArtistTopTracks from "./ArtistTopTracks/ArtistTopTracks";
 import RelatedArtists from "./RelatedArtists/RelatedArtists";
 import AritstAlbums from "../ArtistAlbums/ArtistAlbums";
-import CheckCircle from "../../../icons/CheckCircle";
-import { HeartIcon, HeartIconActive } from "../../../icons/HeartIcon";
 import "./Artist.css";
 
 const artistInfoSelector = (state) => state.artistInfo;
-const themeSelector = (state) => state.theme;
 
 const Artist = () => {
   const artistInfo = useAppStore(artistInfoSelector);
-  const theme = useThemeStore(themeSelector);
   const artistId = artistInfo?.artistId;
   const artistQuery = useQueryHook({
-    key: queryKeys.ARTIST,
+    key: [queryKeys.ARTIST, artistId],
     url: `/artists/${artistId}`,
     id: artistId,
   });
@@ -34,7 +30,7 @@ const Artist = () => {
     artistId,
   });
 
-  const togglePlaylistFollow = () => {
+  const toggleArtistFollow = useCallback(() => {
     if (isFollowing !== undefined) {
       if (isFollowing) {
         toggleFollow.mutate(true);
@@ -42,7 +38,7 @@ const Artist = () => {
         toggleFollow.mutate(false);
       }
     }
-  };
+  }, [isFollowing, toggleFollow]);
 
   if (artistQuery.isLoading) {
     return <div className="dark:text-white">Loading..</div>;
@@ -59,65 +55,17 @@ const Artist = () => {
 
     return (
       <div className="w-full">
-        <div className="flex justify-between min-w-max">
-          <div className="relative flex items-center gap-4">
-            <div>
-              <img
-                src={artistImage}
-                alt="album_cover"
-                className="h-80 w-80 rounded artist-image"
-              />
-            </div>
-            <div className="flex flex-col h-full">
-              <div className="flex flex-col flex-1 justify-end mt-16">
-                <div className="flex space-x-2 items-center">
-                  <span className="uppercase tracking-widest text-sm dark:text-white text-gray-500 block">
-                    Artist
-                  </span>
-                  <span>
-                    <CheckCircle />
-                  </span>
-                </div>
-                <h1 className="text-9xl block dark:text-white text-gray-500 font-bold">
-                  {name}
-                </h1>
-              </div>
-
-              <div className="flex items-end space-x-4 align-bottom flex-1">
-                <div className="">
-                  <button
-                    type="button"
-                    className="tracking-widest py-2 px-8 bg-blue-500  rounded-3xl uppercase text-center font-bold focus:outline-none hover:scale-110 transform-gpu transition-transform"
-                  >
-                    <span className="">pause</span>
-                  </button>
-                </div>
-                <div>
-                  <div
-                    type="button"
-                    className="flex border focus:outline-none border-black dark:border-white h-10 w-10 rounded-full items-center justify-center p-4 hover:scale-110 transform-gpu transition-transform duration-150"
-                  >
-                    {isFollowing ? (
-                      <HeartIconActive onClick={togglePlaylistFollow} />
-                    ) : (
-                      <HeartIcon
-                        onClick={togglePlaylistFollow}
-                        fillColor={
-                          theme === THEME_TYPES.THEME_DARK ? "white" : "black"
-                        }
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="self-end">
-            <span className="uppercase tracking-wider text-gray-500 dark:text-white text-sm font-semibold">
-              Followers {followers?.total}
-            </span>
-          </div>
-        </div>
+        <Banner
+          heading={name}
+          listType="ARTIST"
+          isArtist
+          headingType="large"
+          isFollowable
+          followerCount={followers?.total}
+          image={artistImage}
+          toggleFollow={toggleArtistFollow}
+          isFollowing={isFollowing}
+        />
         <div className="flex lg:flex-row flex-col w-full">
           {/* Top Tracks  */}
           <div className=" flex-shrink-0 flex-1">

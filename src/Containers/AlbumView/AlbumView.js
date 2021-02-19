@@ -6,6 +6,7 @@ import { extractTrackDataFromAlbum } from "../../utils/trackUtils";
 import "../../components/TrackListItem/TrackListItem.css";
 import { queryKeys } from "../../constants/index";
 import ArtistTrackList from "../../components/ArtistTrackList/ArtistTrackList";
+import Banner from "../../components/Banner/Banner";
 
 const albumInfoSelector = (state) => state.albumInfo;
 
@@ -36,50 +37,15 @@ const AlbumView = () => {
 
     return (
       <>
-        <div className="flex justify-between min-w-max">
-          <div className="flex items-center gap-4 item-title">
-            <div>
-              <img
-                src={albumImage}
-                alt="album_cover"
-                className="h-80 w-80 rounded"
-              />
-            </div>
-            <div className="flex flex-col h-full">
-              <div className="flex flex-col flex-1 justify-end mt-16">
-                <span className="uppercase tracking-widest text-sm dark:text-white text-gray-500 block">
-                  {listType}
-                </span>
-                <h1 className="text-5xl block dark:text-white text-gray-500 font-bold">
-                  {albumName}
-                </h1>
-                <div className="flex items-center gap-4">
-                  <span className="dark:text-white text-sm">by</span>
-                  <span className="dark:text-white text-gray-500 font-bold text-base">
-                    {albumOwner}
-                  </span>
-                  <span className="text-sm dark:text-white text-gray-500">
-                    {trackLength} songs
-                  </span>
-                  <span className="text-sm dark:text-white text-gray-500">
-                    10 hr 42 min
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-end space-x-4 align-bottom flex-1">
-                <div className="">
-                  <button
-                    type="button"
-                    className="tracking-widest py-2 px-8 bg-blue-500 rounded-3xl uppercase text-center font-bold focus:outline-none hover:scale-110 transform-gpu transition-transform"
-                  >
-                    <span className="">pause</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Banner
+          heading={albumName}
+          image={albumImage}
+          owner={albumOwner}
+          noOfTracks={trackLength}
+          listType={listType}
+          headingType="small"
+          isFollowing={false}
+        />
         {/* Track Listing  */}
         <div className="w-full py-16 min-w-max">
           {trackList.map((track, index) => {

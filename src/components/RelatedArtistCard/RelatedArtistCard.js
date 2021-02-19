@@ -11,8 +11,8 @@ const RelatedArtistCard = ({ image, artistName, artistId }) => {
   const setArtistInfo = useAppStore(setArtistInfoSelector);
 
   const handleArtistClick = () => {
-    setArtistInfo({ artistId, artistName, image });
     setCurrentTab(tabs.ARTIST);
+    setArtistInfo({ artistId, artistName, image });
   };
 
   return (

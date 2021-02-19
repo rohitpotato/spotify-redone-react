@@ -1,22 +1,19 @@
 import React, { useMemo } from "react";
 import { v4 as uuid } from "uuid";
-import useThemeStore from "../../stores/useThemeStore";
 import useAppStore from "../../stores/useAppStore";
 import useQueryHook from "../../hooks/useQueryHook";
 import useGetPlaylistFollowStatus from "../../hooks/useGetPlaylistFollowStatus";
 import usePlaylistFollowMutation from "../../hooks/mutations/usePlaylistFollowMutation";
 import { extractTrackData } from "../../utils/trackUtils";
-import { HeartIcon, HeartIconActive } from "../../icons/HeartIcon";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
+import Banner from "../../components/Banner/Banner";
 import "../../components/TrackListItem/TrackListItem.css";
-import { queryKeys, THEME_TYPES } from "../../constants/index";
+import { queryKeys } from "../../constants/index";
 import usePrefetchTrackInfo from "../../hooks/usePrefetchTrackInfo";
 
-const themeSelector = (state) => state.theme;
 const playlistInfoSelector = (state) => state.playlistInfo;
 
 const PlaylistView = () => {
-  const theme = useThemeStore(themeSelector);
   const playlistInfo = useAppStore(playlistInfoSelector);
   const playlistId = playlistInfo?.playlistId;
   const playlistQuery = useQueryHook({
@@ -71,74 +68,18 @@ const PlaylistView = () => {
 
     return (
       <>
-        <div className="flex justify-between min-w-max">
-          <div className="flex items-center gap-4 item-title">
-            <div>
-              <img
-                src={playlistImage}
-                alt="album_cover"
-                className="h-80 w-80 rounded"
-              />
-            </div>
-            <div className="flex flex-col h-full">
-              <div className="flex flex-col flex-1 justify-end mt-16">
-                <span className="uppercase tracking-widest text-sm dark:text-white text-gray-500 block">
-                  {listType}
-                </span>
-                <h1 className="text-5xl block dark:text-white text-gray-500 font-bold">
-                  {playlistName}
-                </h1>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm dark:text-white text-gray-500">
-                    Created by{" "}
-                  </span>
-                  <span className="dark:text-white text-gray-500 font-bold text-base">
-                    {playlistOwner}
-                  </span>
-                  <span className="text-sm dark:text-white text-gray-500">
-                    {trackLength} songs
-                  </span>
-                  <span className="text-sm dark:text-white text-gray-500">
-                    10 hr 42 min
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex items-end space-x-4 align-bottom flex-1">
-                <div className="">
-                  <button
-                    type="button"
-                    className="tracking-widest py-2 px-8 bg-blue-500 rounded-3xl uppercase text-center font-bold focus:outline-none hover:scale-110 transform-gpu transition-transform"
-                  >
-                    <span className="">pause</span>
-                  </button>
-                </div>
-                <div>
-                  <div
-                    type="button"
-                    className="flex border focus:outline-none border-black dark:border-white h-10 w-10 rounded-full items-center justify-center p-4 hover:scale-110 transform-gpu transition-transform duration-150"
-                  >
-                    {isFollowing ? (
-                      <HeartIconActive onClick={togglePlaylistFollow} />
-                    ) : (
-                      <HeartIcon
-                        onClick={togglePlaylistFollow}
-                        fillColor={
-                          theme === THEME_TYPES.THEME_DARK ? "white" : "black"
-                        }
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="self-end flex justify-center flex-1">
-            <span className="uppercase tracking-wider text-gray-500 dark:text-white text-sm font-semibold">
-              Followers {playlistFollowers}
-            </span>
-          </div>
-        </div>
+        <Banner
+          heading={playlistName}
+          image={playlistImage}
+          followerCount={playlistFollowers}
+          isFollowing={isFollowing}
+          isFollowable
+          listType={listType}
+          noOfTracks={trackLength}
+          owner={playlistOwner}
+          toggleFollow={togglePlaylistFollow}
+          headingType="small"
+        />
         {/* Track Listing  */}
         <div className="w-full py-16 min-w-max">
           {trackList.map((track, index) => {

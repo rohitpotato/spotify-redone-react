@@ -1,7 +1,6 @@
 import React from "react";
 import { HeartIcon, HeartIconActive } from "../../../icons/HeartIcon";
 import useAudioStore from "../../../stores/useAudioStore";
-import { queryKeys } from "../../../constants";
 
 const audioInfoSelector = (state) => state.audioInfo;
 const SongInfo = () => {
