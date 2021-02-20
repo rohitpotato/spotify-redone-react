@@ -4,6 +4,7 @@ import CardView from "../../../components/CardView/CardView";
 import useAppStore from "../../../stores/useAppStore";
 import useQueryHook from "../../../hooks/useQueryHook";
 import { queryKeys, tabs } from "../../../constants";
+import Wrapper from "../../Wrapper/Wrapper";
 
 const setAlbumInfoSelector = (state) => state.setAlbumInfo;
 const setCurrentTabSelector = (state) => state.setCurrentTab;
@@ -24,25 +25,17 @@ const NewReleases = () => {
     [setCurrentTab, setAlbumInfo]
   );
 
-  if (newReleasesQuery.isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (newReleasesQuery.isError) {
-    return <div>Failed to load.</div>;
-  }
-
-  if (newReleasesQuery.isSuccess) {
-    return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-4xl font-bold tracking-wide dark:text-white">
-            New Releases
-          </h1>
-        </div>
-        <div className="album-list">
-          {newReleasesQuery.data?.data?.albums?.items?.map(
-            ({ id, name, images }) => (
+  return (
+    <Wrapper query={newReleasesQuery}>
+      {(query) => (
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-4xl font-bold tracking-wide dark:text-white">
+              New Releases
+            </h1>
+          </div>
+          <div className="album-list">
+            {query.data?.data?.albums?.items?.map(({ id, name, images }) => (
               <div key={uuid()}>
                 <CardView
                   onCardClick={() => handleCardClick(id, name)}
@@ -50,14 +43,12 @@ const NewReleases = () => {
                   imageUrl={images?.[0]?.url}
                 />
               </div>
-            )
-          )}
+            ))}
+          </div>
         </div>
-      </div>
-    );
-  }
-
-  return null;
+      )}
+    </Wrapper>
+  );
 };
 
 export default NewReleases;

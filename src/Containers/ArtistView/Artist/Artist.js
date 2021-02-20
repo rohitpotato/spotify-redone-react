@@ -3,6 +3,7 @@ import useAppStore from "../../../stores/useAppStore";
 import useQueryHook from "../../../hooks/useQueryHook";
 import useArtistFollowMutation from "../../../hooks/mutations/useArtistFollowMutation";
 import { queryKeys } from "../../../constants";
+import Wrapper from "../../Wrapper/Wrapper";
 import Banner from "../../../components/Banner/Banner";
 import ArtistTopTracks from "./ArtistTopTracks/ArtistTopTracks";
 import RelatedArtists from "./RelatedArtists/RelatedArtists";
@@ -40,49 +41,42 @@ const Artist = () => {
     }
   }, [isFollowing, toggleFollow]);
 
-  if (artistQuery.isLoading) {
-    return <div className="dark:text-white">Loading..</div>;
-  }
-
-  if (artistQuery.isError) {
-    return <div className="dark:text-white">Failed to load..</div>;
-  }
-
-  if (artistQuery.isSuccess) {
-    const { images, name, followers } = artistQuery.data?.data || {};
-    const artistImage =
-      images?.[0]?.url || images?.[1]?.url || images?.[2]?.url || "";
-
-    return (
-      <div className="w-full">
-        <Banner
-          heading={name}
-          listType="ARTIST"
-          isArtist
-          headingType="large"
-          isFollowable
-          followerCount={followers?.total}
-          image={artistImage}
-          toggleFollow={toggleArtistFollow}
-          isFollowing={isFollowing}
-        />
-        <div className="flex lg:flex-row flex-col w-full">
-          {/* Top Tracks  */}
-          <div className=" flex-shrink-0 flex-1">
-            <ArtistTopTracks />
-          </div>
-          <div className=" flex-shrink-0 flex-1 flex lg:justify-center">
-            <RelatedArtists />
-          </div>
+  return (
+    <div className="w-full">
+      <Wrapper query={artistQuery}>
+        {(query) => {
+          const { images, name, followers } = query.data?.data || {};
+          const artistImage =
+            images?.[0]?.url || images?.[1]?.url || images?.[2]?.url || "";
+          return (
+            <Banner
+              heading={name}
+              listType="ARTIST"
+              isArtist
+              headingType="large"
+              isFollowable
+              followerCount={followers?.total}
+              image={artistImage}
+              toggleFollow={toggleArtistFollow}
+              isFollowing={isFollowing}
+            />
+          );
+        }}
+      </Wrapper>
+      <div className="flex lg:flex-row flex-col w-full">
+        {/* Top Tracks  */}
+        <div className=" flex-shrink-0 flex-1">
+          <ArtistTopTracks />
         </div>
-        <div>
-          <AritstAlbums />
+        <div className=" flex-shrink-0 flex-1 flex lg:justify-center">
+          <RelatedArtists />
         </div>
       </div>
-    );
-  }
-
-  return null;
+      <div>
+        <AritstAlbums />
+      </div>
+    </div>
+  );
 };
 
 export default Artist;

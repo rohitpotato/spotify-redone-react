@@ -27,8 +27,8 @@ const Wrapper = ({ query, LoadingComponent, ErrorComponent, children }) => {
     return <div className="grid place-items-center">{toRender}</div>;
   }
 
-  if (query.data) {
-    return React.Children.only(children);
+  if (query.isSuccess) {
+    return React.Children.only(children(query));
   }
   return null;
 };
