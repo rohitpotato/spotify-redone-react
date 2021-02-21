@@ -6,13 +6,32 @@ import CategoryIcon from "../../icons/CategoryIcon";
 import Playlist from "./Playlist/Playlist";
 import useAppStore from "../../stores/useAppStore";
 import { tabs } from "../../constants";
+import MenuIcon from "../../icons/MenuIcon";
 
 const setCurrentTabSelector = (state) => state.setCurrentTab;
+const isSidebarVisibleSelector = (state) => state.isSidebarVisible;
+const setSidebarVisibleSelector = (state) => state.setSidebarVisible;
 
 const Sidebar = () => {
   const setCurrentTab = useAppStore(setCurrentTabSelector);
+  const isSidebarVisible = useAppStore(isSidebarVisibleSelector);
+  const setSidebarVisible = useAppStore(setSidebarVisibleSelector);
+
+  const handleOptionClick = (view) => {
+    setCurrentTab(view);
+    setSidebarVisible();
+  };
+
   return (
-    <nav className="sidebar w-96 shadow px-6">
+    <nav
+      className={`sidebar w-96 shadow px-6 h-full sm:w-screen md:w-72 md:block  ${
+        isSidebarVisible ? "sm:block w-screen" : "hidden"
+      }`}
+      id="sidebar"
+    >
+      <div className="pt-8 pb-2 md:hidden block">
+        <MenuIcon onClick={() => setSidebarVisible()} />
+      </div>
       <div className="py-8 dark:text-white space-y-3">
         {[
           { name: "Browse", Component: BrowseIcon, onClickView: tabs.BROWSE },
@@ -21,13 +40,17 @@ const Sidebar = () => {
             Component: CategoryIcon,
             onClickView: tabs.CATEGORIES,
           },
-          { name: "SEARCH", Component: SearchIcon },
+          {
+            name: "SEARCH",
+            Component: SearchIcon,
+            onClickView: tabs.SEARCH_VIEW,
+          },
         ].map(({ name, Component, onClickView }) => {
           return (
             <button
               key={name}
               type="button"
-              onClick={() => setCurrentTab(onClickView)}
+              onClick={() => handleOptionClick(onClickView)}
               className="py-3 text-gray-500 uppercase hover:bg-gray-200 hover:text-gray-900 font-bold dark:text-gray-400 dark:hover:bg-white dark:hover:text-black w-full focus:outline-none transition rounded"
             >
               <div className="flex items-center gap-3">
@@ -49,7 +72,7 @@ const Sidebar = () => {
         ].map((item) => (
           <button
             key={item.name}
-            onClick={() => setCurrentTab(item.onClick)}
+            onClick={() => handleOptionClick(item.onClick)}
             type="button"
             className="text-gray-500 hover:text-gray-900 font-bold text-sm dark:text-gray-400 dark:hover:text-white w-full focus:outline-none transition"
           >

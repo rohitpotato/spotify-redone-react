@@ -12,7 +12,8 @@ const useAppStore = create((set) => ({
   setArtistInfo: (artistInfo) => set({ artistInfo }),
   albumInfo: null,
   setAlbumInfo: (albumInfo) => set({ albumInfo }),
-  isUpdating: false,
-  setIsUpdating: () => set((state) => ({ isUpdating: !state.isUpdating })),
+  isSidebarVisible: false,
+  setSidebarVisible: () =>
+    set((state) => ({ isSidebarVisible: !state.isSidebarVisible })),
 }));
 export default useAppStore;

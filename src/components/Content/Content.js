@@ -12,6 +12,7 @@ import Artist from "../../Containers/ArtistView/Artist/Artist";
 import Albums from "../../Containers/AlbumView/UserAlbums/Albums";
 import AlbumView from "../../Containers/AlbumView/AlbumView";
 import TopTracks from "../../Containers/TopTracks/TopTracks";
+import SearchView from "../../Containers/SearchView/SearchView";
 
 const currentTabSelector = (state) => state.currentTab;
 
@@ -28,6 +29,7 @@ const Content = () => {
     ALBUM,
     ALBUM_LIST,
     TOP_TRACKS,
+    SEARCH_VIEW,
   } = tabs;
   return (
     <>
@@ -43,6 +45,7 @@ const Content = () => {
         {currentTab === ALBUM_LIST && <Albums />}
         {currentTab === ALBUM && <AlbumView />}
         {currentTab === TOP_TRACKS && <TopTracks />}
+        {currentTab === SEARCH_VIEW && <SearchView />}
       </div>
     </>
   );

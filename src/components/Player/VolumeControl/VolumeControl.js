@@ -10,7 +10,7 @@ const VolumeControl = () => {
   const volume = useAudioStore(volumeSelector);
   const setVolume = useAudioStore(setVolumeSelector);
   return (
-    <div className="flex justify-between space-x-4">
+    <div className="md:flex hidden justify-between space-x-4">
       {volume === 0 ? <VolumeMute /> : <Volume />}
       <div>
         <Slider

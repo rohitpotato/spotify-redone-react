@@ -13,7 +13,7 @@ import DefaultLoader from "../../components/Loader/LoadingComponent";
  */
 
 const Wrapper = ({ query, LoadingComponent, ErrorComponent, children }) => {
-  if (query.isLoading || query.isIdle) {
+  if (query.isLoading) {
     const toRender = LoadingComponent || <DefaultLoader />;
     return <div className="grid place-items-center">{toRender}</div>;
   }

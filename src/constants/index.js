@@ -48,6 +48,7 @@ export const queryKeys = {
   ALBUM_TRACKS: "ALBUM_TRACKS",
   TOP_TRACKS: "TOP_TRACKS",
   TRACK_SAVED_STATUS: "TRACK_SAVED_STATUS",
+  SEARCH: "SEARCH",
 };
 
 export const tabs = {
@@ -61,6 +62,7 @@ export const tabs = {
   ALBUM_LIST: "ALBUM_LIST",
   ALBUM: "ALBUM",
   TOP_TRACKS: "TOP_TRACKS",
+  SEARCH_VIEW: "SEARCH_VIEW",
 };
 
 export const iconSize = "h-7 w-7";
