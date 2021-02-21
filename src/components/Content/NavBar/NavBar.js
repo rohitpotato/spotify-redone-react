@@ -10,6 +10,8 @@ import useAppStore from "../../../stores/useAppStore";
 const NavBar = () => {
   const theme = useThemeStore((state) => state.theme);
   const setSidebarVisible = useAppStore((state) => state.setSidebarVisible);
+  const isSidebarVisible = useAppStore((state) => state.isSidebarVisible);
+
   const userInfoQuery = useQueryHook({
     key: queryKeys.USER_PROFILE,
     url: "/me",
@@ -44,7 +46,11 @@ const NavBar = () => {
   return (
     <nav className="content w-full sticky top-0 p-4 shadow-sm z-10 bg-white dark:bg-themeGray overflow-hidden">
       <div className="flex items-center justify-between">
-        <div className="sm:flex md:hidden flex-1">
+        <div
+          className={`sm:flex md:hidden flex-1 ${
+            isSidebarVisible ? "hidden" : "block"
+          }`}
+        >
           <MenuIcon onClick={handleMenuClick} />
         </div>
         <div className="flex items-center flex-1 justify-end space-x-4">

@@ -24,7 +24,7 @@ const AlbumCard = ({ name, albumImage, albumId }) => {
       <img
         src={albumImage}
         alt="Artist Card"
-        className="transform-gpu hover:scale-90 hover:opacity-80 transition-transform duration-150 max-h-64 max-w-2xl rounded-full"
+        className="transform-gpu hover:scale-105 flex-shrink-0 hover:opacity-80 transition-transform duration-150 max-h-64 max-w-2xl rounded-full"
       />
       <span className="block font-bold text-base text-black dark:text-white hover:underline cursor-pointer">
         {name}

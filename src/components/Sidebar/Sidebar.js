@@ -24,12 +24,12 @@ const Sidebar = () => {
 
   return (
     <nav
-      className={`sidebar w-96 shadow px-6 h-full sm:w-screen md:w-72 md:block  ${
-        isSidebarVisible ? "sm:block w-screen" : "hidden"
+      className={`sidebar shadow px-6 h-full sm:w-screen md:w-80 md:block ${
+        isSidebarVisible ? "sm:block sm:w-screen" : "hidden"
       }`}
       id="sidebar"
     >
-      <div className="pt-8 pb-2 md:hidden block">
+      <div className="pt-8 pb-2 md:hidden block sticky top-0 z-10">
         <MenuIcon onClick={() => setSidebarVisible()} />
       </div>
       <div className="py-8 dark:text-white space-y-3">
