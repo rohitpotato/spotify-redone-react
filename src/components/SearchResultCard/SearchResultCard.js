@@ -40,7 +40,7 @@ SearchResultCard.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string,
   subTitle: PropTypes.string,
-  onClick: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default SearchResultCard;

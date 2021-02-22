@@ -20,7 +20,6 @@ export const getTokenFromUrl = () => {
 export const isTokenValid = (date) => {
   const HOUR = 1000 * 60 * 60;
   const anHourAgo = Date.now() - HOUR;
-
   return date > anHourAgo;
 };
 

@@ -36,10 +36,8 @@ const ArtistTopTracks = () => {
               } = track;
               const { name: albumName, id: albumId } = album || {};
               const trackImage =
-                album?.images?.[2].url ||
-                album?.images?.[1].url ||
-                album?.images?.[0].url ||
-                "";
+                album?.images?.[album?.images?.length - 1]?.url || "";
+
               const artists = artistData?.[0].name || "";
               return (
                 <ArtistTrackList

@@ -37,14 +37,13 @@ Wrapper.defaultProps = {
   query: {},
   LoadingComponent: null,
   ErrorComponent: null,
-  children: null,
 };
 
 Wrapper.propTypes = {
   query: PropTypes.object,
-  LoadingComponent: PropTypes.node,
-  ErrorComponent: PropTypes.node,
-  children: PropTypes.node,
+  LoadingComponent: PropTypes.element,
+  ErrorComponent: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
 };
 
 export default Wrapper;

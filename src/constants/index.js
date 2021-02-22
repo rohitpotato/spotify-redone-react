@@ -66,6 +66,7 @@ export const tabs = {
 };
 
 export const iconSize = "h-7 w-7";
+export const searchResultLimit = 20;
 
 export const dayMessage = {
   GOOD_MORNING: "Good Morning",

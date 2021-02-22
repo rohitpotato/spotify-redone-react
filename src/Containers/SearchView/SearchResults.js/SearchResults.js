@@ -5,7 +5,7 @@ import useQueryHook from "../../../hooks/useQueryHook";
 import useAppStore from "../../../stores/useAppStore";
 import Wrapper from "../../Wrapper/Wrapper";
 import SearchResultCard from "../../../components/SearchResultCard/SearchResultCard";
-import { queryKeys, tabs } from "../../../constants";
+import { queryKeys, tabs, searchResultLimit } from "../../../constants";
 import "./SearchContainer.css";
 
 const setAlbumInfoSelector = (state) => state.setAlbumInfo;
@@ -16,7 +16,7 @@ const setPlaylistInfoSelector = (state) => state.setPlaylistInfo;
 const SearchResults = ({ sTerm }) => {
   const searchQuery = useQueryHook({
     key: [queryKeys.SEARCH, sTerm],
-    url: `/search?q=${sTerm}&type=album,artist,playlist,track&limit=10`,
+    url: `/search?q=${sTerm}&type=album,artist,playlist,track&limit=${searchResultLimit}`,
     id: sTerm,
     config: {
       enabled: !!sTerm?.length,

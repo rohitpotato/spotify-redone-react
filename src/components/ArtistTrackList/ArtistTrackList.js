@@ -49,13 +49,8 @@ const ArtistTrackList = ({
 
   return (
     <div className="flex sapce-between border-b-2 border-gray-400 dark:border-gray-600 border-opacity-2 20 space-x-4 py-2 items-center focus:outline-none">
-      <button
-        onClick={handlePlayClick}
-        type="button"
-        className="focus:outline-none"
-      >
-        <PlayIcon size="h-8 w-8" />
-      </button>
+      <PlayIcon onClick={handlePlayClick} size="h-8 w-8" />
+
       <div className="flex-shrink-0">
         <img src={image} alt="artist_image" className="h-10 w-10" />
       </div>

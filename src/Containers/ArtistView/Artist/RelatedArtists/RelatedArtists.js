@@ -29,8 +29,8 @@ const RelatedArtists = () => {
             </div>
             <div>
               {relatedArtists?.slice(0, 10)?.map(({ id, name, images }) => {
-                const image =
-                  images?.[2]?.url || images?.[1]?.url || images?.[0]?.url;
+                const image = images[images?.length - 1]?.url || "";
+
                 return (
                   <RelatedArtistCard
                     artistName={name}
