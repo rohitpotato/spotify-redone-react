@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
 import App from "./App";
