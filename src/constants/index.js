@@ -3,12 +3,14 @@ export const THEME_TYPES = {
   THEME_LIGHT: "light",
 };
 
+const productionUrl =
+  "https://rohitpotato.github.io/spotify-redone-react/callback";
+const localUrl = "http://localhost:3000/callback";
+
 const apiCredentials = {
-  CLIENT_ID: "230be2f46909426b8b80cac36446b52a",
+  CLIENT_ID: "921f7321f4644699b85b368d22d684db",
   REDIRECT_URL: `${
-    process.env.NODE_ENV === "production"
-      ? "https://rohitpotato.github.io/spotify-redone-react/callback"
-      : "http://localhost:3000/callback"
+    process.env.NODE_ENV === "production" ? productionUrl : localUrl
   }`,
   SCOPES: [
     "user-library-read",
