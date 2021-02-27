@@ -3,17 +3,17 @@
   "name": "Spotify Redone React",
   "icons": [
     {
-      "src": "https://open.scdn.co/cdn/images/favicon32.a19b4f5b.png",
+      "src": "https://open.scdn.co/cdn/images/og-image.64b84348.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "https://open.scdn.co/cdn/images/favicon32.a19b4f5b.png",
+      "src": "https://open.scdn.co/cdn/images/og-image.64b84348.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://open.scdn.co/cdn/images/favicon32.a19b4f5b.png",
+      "src": "https://open.scdn.co/cdn/images/og-image.64b84348.png",
       "type": "image/png",
       "sizes": "512x512"
     }
