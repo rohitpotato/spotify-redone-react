@@ -2,7 +2,7 @@
 
 ## A spotify client built with [react-query](https://github.com/tannerlinsley/react-query), [zustand](https://github.com/pmndrs/zustand) and [tailwindcss](https://github.com/tailwindlabs/tailwindcss) 🔥 <3
 
-![Alt Text](https://user-images.githubusercontent.com/30090495/108782616-e6ee0b80-7591-11eb-9db6-8f7f17461f8e.gif)
+## [View Demo here](https://rohitpotato.github.io/spotify-redone-react)
 
 ### Features Include
 
