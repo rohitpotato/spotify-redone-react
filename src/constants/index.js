@@ -3,8 +3,7 @@ export const THEME_TYPES = {
   THEME_LIGHT: "light",
 };
 
-const productionUrl =
-  "https://rohitpotato.github.io/spotify-redone-react/callback";
+const productionUrl = "https://rohitpotato.github.io/spotify-redone-react/";
 const localUrl = "http://localhost:3000/callback";
 
 const apiCredentials = {
@@ -23,6 +22,8 @@ const apiCredentials = {
     "playlist-modify-private",
   ],
 };
+
+console.log(process.env.NODE_ENV, apiCredentials.REDIRECT_URL);
 
 export const loginRoute = `https://accounts.spotify.com/authorize?client_id=${
   apiCredentials.CLIENT_ID
