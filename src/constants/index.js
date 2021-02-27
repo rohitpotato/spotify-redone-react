@@ -5,7 +5,11 @@ export const THEME_TYPES = {
 
 const apiCredentials = {
   CLIENT_ID: "230be2f46909426b8b80cac36446b52a",
-  REDIRECT_URL: "http://localhost:3000/callback",
+  REDIRECT_URL: `${
+    process.env.NODE_ENV === "production"
+      ? "https://rohitpotato.github.io/spotify-redone-react/callback"
+      : "http://localhost:3000/callback"
+  }`,
   SCOPES: [
     "user-library-read",
     "streaming",

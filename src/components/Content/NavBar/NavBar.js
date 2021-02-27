@@ -6,11 +6,13 @@ import MenuIcon from "../../../icons/MenuIcon";
 import SunIcon from "../../../icons/SunIcon";
 import MoonIcon from "../../../icons/MoonIcon";
 import useAppStore from "../../../stores/useAppStore";
+import useAuthStore from "../../../stores/useAuthStore";
 
 const NavBar = () => {
   const theme = useThemeStore((state) => state.theme);
   const setSidebarVisible = useAppStore((state) => state.setSidebarVisible);
   const isSidebarVisible = useAppStore((state) => state.isSidebarVisible);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   const userInfoQuery = useQueryHook({
     key: queryKeys.USER_PROFILE,
@@ -44,7 +46,11 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="content w-full sticky top-0 p-4 shadow-sm z-10 bg-white dark:bg-themeGray overflow-hidden">
+    <nav
+      className={`content w-full sticky top-0 p-4 shadow-sm bg-white dark:bg-themeGray overflow-hidden dark:border-gray-800 border-b-2 ${
+        isAuthenticated ? "z-10" : ""
+      }`}
+    >
       <div className="flex items-center justify-between">
         <div
           className={`sm:flex md:hidden flex-1 ${
