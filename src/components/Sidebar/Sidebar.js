@@ -29,8 +29,10 @@ const Sidebar = () => {
       }`}
       id="sidebar"
     >
-      <div className="pt-8 pb-2 md:hidden block sticky top-0 z-10">
-        <MenuIcon onClick={() => setSidebarVisible()} />
+      <div className="pt-8 pb-2 md:hidden block sticky top-0 z-100 w-full">
+        <div className="bg-themeGray">
+          <MenuIcon onClick={() => setSidebarVisible()} />
+        </div>
       </div>
       <div className="py-8 dark:text-white space-y-3">
         {[

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 /**
  * useIntersection hook for Intersection Observer API
@@ -9,12 +9,9 @@ import { useRef, useState, useEffect } from "react";
  * @returns {boolean} Returns the boolan isIntersecting from Intersection Observer entries object for the given target
  */
 
-export const useIntersection = ({ target, options, callback }) => {
-  const { defaultIntersecting, once, ...opts } = options;
+export default function useIntersectionObserver({ target, options, callback }) {
+  const { once, enabled, ...opts } = options;
   const optsRef = useRef(opts);
-  const [intersecting, setIntersecting] = useState(
-    defaultIntersecting === true
-  );
   const intersectedRef = useRef(false);
 
   useEffect(() => {
@@ -24,6 +21,10 @@ export const useIntersection = ({ target, options, callback }) => {
   });
 
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
     if (target == null) {
       return;
     }
@@ -40,14 +41,9 @@ export const useIntersection = ({ target, options, callback }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[entries.length - 1];
-        setIntersecting(entry.isIntersecting);
-
-        if (callback != null) {
-          callback(entry);
-        }
-
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && callback !== null) {
           intersectedRef.current = true;
+          callback(entry);
         }
 
         if (once && entry.isIntersecting && element != null) {
@@ -73,7 +69,5 @@ export const useIntersection = ({ target, options, callback }) => {
         observer.unobserve(element);
       }
     };
-  }, [target, callback, once]);
-
-  return intersecting;
-};
+  }, [target, callback, once, enabled]);
+}

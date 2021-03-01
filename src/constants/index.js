@@ -23,8 +23,6 @@ const apiCredentials = {
   ],
 };
 
-console.log(process.env.NODE_ENV, apiCredentials.REDIRECT_URL);
-
 export const loginRoute = `https://accounts.spotify.com/authorize?client_id=${
   apiCredentials.CLIENT_ID
 }&redirect_uri=${encodeURIComponent(
@@ -74,6 +72,7 @@ export const tabs = {
 
 export const iconSize = "h-7 w-7";
 export const searchResultLimit = 20;
+export const paginationLimit = 30;
 
 export const dayMessage = {
   GOOD_MORNING: "Good Morning",

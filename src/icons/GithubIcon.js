@@ -4,7 +4,7 @@ import { repoUrl } from "../constants";
 const GithubIcon = () => {
   return (
     <a
-      className="py-2 px-2 dark:bg-white rounded-full"
+      className="p-1 dark:bg-white rounded-full"
       href={repoUrl}
       target="_blank"
       rel="noreferrer"

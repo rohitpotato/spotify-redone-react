@@ -48,3 +48,23 @@ export const extractTrackDataFromAlbum = (trackData) => {
     artistName,
   };
 };
+
+export const convertDuration = (ts) =>
+  new Date(ts * 1000).toISOString().substr(11, 8);
+
+export const convertDate = (date) => {
+  const dateCp = new Date(date);
+  return (
+    [dateCp.getDay(), dateCp.getMonth(), dateCp.getFullYear()].join("-") || ""
+  );
+};
+
+export const extractOffset = (string) => {
+  try {
+    const url = new URL(string);
+    const offset = url.searchParams.get("offset");
+    return offset || undefined;
+  } catch (e) {
+    return undefined;
+  }
+};

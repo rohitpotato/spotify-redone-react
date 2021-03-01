@@ -6,7 +6,7 @@ const themeSelector = (state) => state.theme;
 const Loader = () => {
   const theme = useThemeStore(themeSelector);
   return (
-    <div className="z-10flex fixed top-14 right-5 px-8 py-2">
+    <div className="z-10 flex fixed top-14 right-1 px-2 py-2">
       <svg
         className="h-8 w-8"
         version="1.1"

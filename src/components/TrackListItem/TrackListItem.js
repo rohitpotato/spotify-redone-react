@@ -7,6 +7,7 @@ import transformQueue from "../../utils/queueUtils";
 import PlayIcon from "../../icons/PlayIcon";
 import { iconSize, tabs } from "../../constants";
 import "./TrackListItem.css";
+import { convertDate, convertDuration } from "../../utils/trackUtils";
 
 const setAudioInfoSelector = (state) => state.setAudioInfo;
 const setQueueSelector = (state) => state.setQueue;
@@ -91,7 +92,7 @@ const TrackListItem = ({
             className="focus:outline-none cursor-pointer hover:underline flex-1 flex-shrink-0"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
-              {addedAt}
+              {convertDate(addedAt)}
             </span>
           </button>
         )}
@@ -101,7 +102,7 @@ const TrackListItem = ({
             className="focus:outline-none cursor-pointer hover:underline flex-1 flex-shrink-0"
           >
             <span className="flex dark:text-white text-black hover:dark:text-gray-300 text-sm font-semibold">
-              {duration}
+              {convertDuration(duration)}
             </span>
           </button>
         )}

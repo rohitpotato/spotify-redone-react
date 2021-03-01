@@ -1,26 +1,54 @@
-import React from "react";
+import React, { useRef } from "react";
 import { v4 as uuid } from "uuid";
-import useQueryHook from "../../hooks/useQueryHook";
+import { useInfiniteQuery } from "react-query";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
-import { extractTrackData } from "../../utils/trackUtils";
-import { queryKeys } from "../../constants";
+import Loader from "../../components/Loader/LoadingComponent";
+import { extractOffset, extractTrackData } from "../../utils/trackUtils";
+import { queryKeys, paginationLimit } from "../../constants";
+import request from "../../utils/axiosClient";
+
+const fetchTracks = async ({ pageParam = 0 }) => {
+  const results = await request.get(
+    `/me/tracks?limit=${paginationLimit}&offset=${pageParam}`
+  );
+  return results;
+};
 
 const TopTracks = () => {
-  const topTracksQuery = useQueryHook({
-    key: queryKeys.TOP_TRACKS,
-    url: "/me/tracks?limit=50",
+  const {
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+    isSuccess,
+    data,
+  } = useInfiniteQuery(queryKeys.TOP_TRACKS, fetchTracks, {
+    getNextPageParam: (lastpage) => extractOffset(lastpage.data?.next),
+  });
+  const loadMoreRef = useRef(null);
+
+  useIntersectionObserver({
+    target: loadMoreRef,
+    callback: fetchNextPage,
+    options: {
+      threshold: 0.8,
+      defaultIntersection: false,
+      once: false,
+      enabled: hasNextPage,
+    },
   });
 
-  if (topTracksQuery.isLoading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (topTracksQuery.isError) {
+  if (isError) {
     return <div>Failed to load.</div>;
   }
 
-  if (topTracksQuery.isSuccess) {
-    const trackList = topTracksQuery.data?.data?.items || [];
+  if (isSuccess) {
     return (
       <div>
         <div>
@@ -29,52 +57,48 @@ const TopTracks = () => {
           </h1>
         </div>
         <div className="w-full py-16 min-w-max">
-          <div className="flex flex-auto justify-between items-center p-4 dark:hover:bg-gray-500 hover:bg-gray-200 transition w-full">
-            {["", "TITLE", "ALBUM", "ARTIST", "DURATION"].map(
-              (header, index) => {
-                const width = index === 0 ? "w-1/12" : "w-2/4";
+          {data.pages.map((page) => (
+            <React.Fragment key={uuid()}>
+              {page.data?.items?.map((track, index) => {
+                const {
+                  addedAt,
+                  id,
+                  name,
+                  duration,
+                  previewUrl,
+                  albumId,
+                  albumName,
+                  artistId,
+                  artistName,
+                  musicImage,
+                } = extractTrackData(track);
                 return (
-                  <div key={header} className={`${width}`}>
-                    <span className="tracking-wider text-sm text-gray-500">
-                      {header}
-                    </span>
-                  </div>
+                  <TrackListItem
+                    key={uuid()}
+                    id={id}
+                    index={index}
+                    title={name}
+                    duration={duration}
+                    album={albumName}
+                    albumId={albumId}
+                    artist={artistName}
+                    artistId={artistId}
+                    url={previewUrl}
+                    addedAt={addedAt}
+                    list={page.data.items}
+                    image={musicImage}
+                  />
                 );
-              }
-            )}
-          </div>
-          {trackList.map((track, index) => {
-            const {
-              addedAt,
-              id,
-              name,
-              duration,
-              previewUrl,
-              albumId,
-              albumName,
-              artistId,
-              artistName,
-              musicImage,
-            } = extractTrackData(track);
-            return (
-              <TrackListItem
-                key={uuid()}
-                id={id}
-                index={index}
-                title={name}
-                duration={duration}
-                album={albumName}
-                albumId={albumId}
-                artist={artistName}
-                artistId={artistId}
-                url={previewUrl}
-                addedAt={addedAt}
-                list={trackList}
-                image={musicImage}
-              />
-            );
-          })}
+              })}
+            </React.Fragment>
+          ))}
         </div>
+        <div ref={loadMoreRef} className="h-8 w-8 py-3" />
+        {isFetchingNextPage && (
+          <div className="grid place-items-center">
+            <Loader />
+          </div>
+        )}
       </div>
     );
   }
