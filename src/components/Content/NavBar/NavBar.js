@@ -7,6 +7,7 @@ import SunIcon from "../../../icons/SunIcon";
 import MoonIcon from "../../../icons/MoonIcon";
 import useAppStore from "../../../stores/useAppStore";
 import useAuthStore from "../../../stores/useAuthStore";
+import GithubIcon from "../../../icons/GithubIcon";
 
 const NavBar = () => {
   const theme = useThemeStore((state) => state.theme);
@@ -60,8 +61,9 @@ const NavBar = () => {
           <MenuIcon onClick={handleMenuClick} />
         </div>
         <div className="flex items-center flex-1 justify-end space-x-4">
+          <GithubIcon />
           {renderProfileInfo()}
-          <div>
+          <div className="flex">
             {theme === THEME_TYPES.THEME_DARK ? <SunIcon /> : <MoonIcon />}
           </div>
         </div>

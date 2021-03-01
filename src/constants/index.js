@@ -100,3 +100,5 @@ export const tableFieldListNames = {
   ADDED_AT: "ADDED_AT",
   DURATION: "DURATION",
 };
+
+export const repoUrl = "https://github.com/rohitpotato/spotify-redone-react";
