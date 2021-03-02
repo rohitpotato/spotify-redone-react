@@ -61,7 +61,7 @@ const PlaylistView = () => {
 
   useIntersectionObserver({
     target: loadMoreRef,
-    callback: () => fetchNextPage,
+    callback: fetchNextPage,
     options: {
       threshold: 0.8,
       defaultIntersection: false,
@@ -117,6 +117,7 @@ const PlaylistView = () => {
             );
           }}
         </Wrapper>
+
         <div className="w-full py-16 min-w-max">
           {data.pages.map((page) => {
             const trackList = page?.data?.items || [];
@@ -137,7 +138,7 @@ const PlaylistView = () => {
                   } = extractTrackData(track);
                   return (
                     <TrackListItem
-                      key={id}
+                      key={uuid()}
                       id={id}
                       index={index}
                       title={name}
