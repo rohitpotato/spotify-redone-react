@@ -59,11 +59,11 @@ export const convertDate = (date) => {
   );
 };
 
-export const extractOffset = (string) => {
+export const extractQueryParam = (string, value) => {
   try {
     const url = new URL(string);
-    const offset = url.searchParams.get("offset");
-    return offset || undefined;
+    const param = url.searchParams.get(value);
+    return param || undefined;
   } catch (e) {
     return undefined;
   }

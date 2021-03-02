@@ -12,7 +12,8 @@
 4. Browse through categories, playlists, artists and albums.
 5. Follow/Unfollow Playlists and Artists
 6. Localstorage persistence saves your volume and theme
-7. And a few more..
+7. Infinite Scrolling
+8. And a few more..
 
 ### Steps to install
 

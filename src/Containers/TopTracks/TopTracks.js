@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "react-query";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import TrackListItem from "../../components/TrackListItem/TrackListItem";
 import Loader from "../../components/Loader/LoadingComponent";
-import { extractOffset, extractTrackData } from "../../utils/trackUtils";
+import { extractQueryParam, extractTrackData } from "../../utils/trackUtils";
 import { queryKeys, paginationLimit } from "../../constants";
 import request from "../../utils/axiosClient";
 
@@ -25,7 +25,8 @@ const TopTracks = () => {
     isSuccess,
     data,
   } = useInfiniteQuery(queryKeys.TOP_TRACKS, fetchTracks, {
-    getNextPageParam: (lastpage) => extractOffset(lastpage.data?.next),
+    getNextPageParam: (lastpage) =>
+      extractQueryParam(lastpage.data?.next, "offset"),
   });
   const loadMoreRef = useRef(null);
 
@@ -41,7 +42,11 @@ const TopTracks = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="grid place-items-center">
+        <Loader />
+      </div>
+    );
   }
 
   if (isError) {
