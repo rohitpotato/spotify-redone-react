@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/spotify-redone-react/static/css/main.4671ddac.chunk.css",
-    "main.js": "/spotify-redone-react/static/js/main.3810ca46.chunk.js",
-    "main.js.map": "/spotify-redone-react/static/js/main.3810ca46.chunk.js.map",
-    "runtime-main.js": "/spotify-redone-react/static/js/runtime-main.a5167572.js",
-    "runtime-main.js.map": "/spotify-redone-react/static/js/runtime-main.a5167572.js.map",
-    "static/js/2.1a55a197.chunk.js": "/spotify-redone-react/static/js/2.1a55a197.chunk.js",
-    "static/js/2.1a55a197.chunk.js.map": "/spotify-redone-react/static/js/2.1a55a197.chunk.js.map",
-    "static/js/3.6e56a742.chunk.js": "/spotify-redone-react/static/js/3.6e56a742.chunk.js",
-    "static/js/3.6e56a742.chunk.js.map": "/spotify-redone-react/static/js/3.6e56a742.chunk.js.map",
+    "main.css": "/spotify-redone-react/static/css/main.4cd922e0.chunk.css",
+    "main.js": "/spotify-redone-react/static/js/main.6fd81574.chunk.js",
+    "main.js.map": "/spotify-redone-react/static/js/main.6fd81574.chunk.js.map",
+    "runtime-main.js": "/spotify-redone-react/static/js/runtime-main.756b0b00.js",
+    "runtime-main.js.map": "/spotify-redone-react/static/js/runtime-main.756b0b00.js.map",
+    "static/js/2.7412cd3e.chunk.js": "/spotify-redone-react/static/js/2.7412cd3e.chunk.js",
+    "static/js/2.7412cd3e.chunk.js.map": "/spotify-redone-react/static/js/2.7412cd3e.chunk.js.map",
+    "static/js/3.e82cc06f.chunk.js": "/spotify-redone-react/static/js/3.e82cc06f.chunk.js",
+    "static/js/3.e82cc06f.chunk.js.map": "/spotify-redone-react/static/js/3.e82cc06f.chunk.js.map",
     "index.html": "/spotify-redone-react/index.html",
-    "static/css/main.4671ddac.chunk.css.map": "/spotify-redone-react/static/css/main.4671ddac.chunk.css.map",
-    "static/js/2.1a55a197.chunk.js.LICENSE.txt": "/spotify-redone-react/static/js/2.1a55a197.chunk.js.LICENSE.txt"
+    "static/css/main.4cd922e0.chunk.css.map": "/spotify-redone-react/static/css/main.4cd922e0.chunk.css.map",
+    "static/js/2.7412cd3e.chunk.js.LICENSE.txt": "/spotify-redone-react/static/js/2.7412cd3e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a5167572.js",
-    "static/js/2.1a55a197.chunk.js",
-    "static/css/main.4671ddac.chunk.css",
-    "static/js/main.3810ca46.chunk.js"
+    "static/js/runtime-main.756b0b00.js",
+    "static/js/2.7412cd3e.chunk.js",
+    "static/css/main.4cd922e0.chunk.css",
+    "static/js/main.6fd81574.chunk.js"
   ]
 }
