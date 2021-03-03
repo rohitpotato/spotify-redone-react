@@ -1,5 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
+import Wrapper from "../Wrapper/Wrapper";
 import CardView from "../../components/CardView/CardView";
 import { queryKeys, tabs } from "../../constants";
 import useQueryHook from "../../hooks/useQueryHook";
@@ -21,41 +22,33 @@ const CategoryView = () => {
     setCurrentTab(tabs.SUB_PLAYLIST_VIEW);
   };
 
-  if (getCategoriesQuery.isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (getCategoriesQuery.isError) {
-    return <div>Failed to load.</div>;
-  }
-
-  if (getCategoriesQuery.isSuccess) {
-    return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-4xl font-bold tracking-wide dark:text-white">
-            Categories
-          </h1>
+  return (
+    <Wrapper query={getCategoriesQuery}>
+      {(query) => (
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-4xl font-bold tracking-wide dark:text-white">
+              Categories
+            </h1>
+          </div>
+          <div className="album-list">
+            {query.data?.data?.categories?.items?.map(
+              ({ id, name, icons, description }) => (
+                <div key={uuid()}>
+                  <CardView
+                    onCardClick={() => onCardClick(id, name)}
+                    description={description}
+                    name={name}
+                    imageUrl={icons?.[0]?.url}
+                  />
+                </div>
+              )
+            )}
+          </div>
         </div>
-        <div className="album-list">
-          {getCategoriesQuery.data?.data?.categories?.items?.map(
-            ({ id, name, icons, description }) => (
-              <div key={uuid()}>
-                <CardView
-                  onCardClick={() => onCardClick(id, name)}
-                  description={description}
-                  name={name}
-                  imageUrl={icons?.[0]?.url}
-                />
-              </div>
-            )
-          )}
-        </div>
-      </div>
-    );
-  }
-
-  return null;
+      )}
+    </Wrapper>
+  );
 };
 
 export default CategoryView;

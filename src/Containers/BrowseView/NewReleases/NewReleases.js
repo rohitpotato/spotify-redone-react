@@ -40,7 +40,7 @@ const NewReleases = () => {
                 <CardView
                   onCardClick={() => handleCardClick(id, name)}
                   name={name}
-                  imageUrl={images?.[0]?.url}
+                  imageUrl={images?.[1]?.url}
                 />
               </div>
             ))}
